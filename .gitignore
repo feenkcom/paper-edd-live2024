@@ -1,0 +1,8 @@
+_*
+scg.bib
+*.aux
+*.blg
+*.log
+*.out
+*.synctex.gz
+.DS_Store
