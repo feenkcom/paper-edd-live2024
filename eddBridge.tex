@@ -73,6 +73,23 @@
 \renewcommand{\shortauthors}{Chi\c{s} et al.}
 
 \begin{abstract}
+
+	Abstract
+		We want our software systems to be explainable
+			Answer questions about the system while we are exploring, developing or using it
+		Tests are a weak form of explanation
+			Some tests encode interesting scenarios, but most don't
+		Textual documentation is also a weak form of explanation
+			Not causally connected to the code, so easily out of date
+		Examples are tests that are also factories for interesting cases
+			Are causally connected to the system
+				Always live and tested
+			Can be embedded into live documentation
+		We show
+			How EDD enriches TDD with live programming
+			How examples can be molded with tiny tools to answer analysis questions
+			How examples can be embedded in live documentation to make a system explainable
+
 \end{abstract}
 
 %\keywords{TODO.}
@@ -84,7 +101,89 @@
 \maketitle
 
 % ============================================================
-\section{Introduction}\label{sec:intro}
+\section{Background: Examples = Tests + Factories}\label{sec:intro}
+
+
+	Background
+		An old idea that was never seriously taken up
+			has new potential in the context of live systems
+		Core idea
+			Example = Test + Factory
+			Turn tests into factories that return the object under test
+			Gaelli PhD
+		Impact
+			Examples can be composed
+				JExample
+					cf Lea's MSc thesis
+				Reuse examples as setups
+				Reduce code duplication
+				Fewer failing tests
+
+Composing Tests from Examples (JOT)
+\cite{Gael07a}
+
+Modeling Examples to Test and Understand Software (PhD)
+\cite{Gael06b}
+
+JExample: Exploiting Dependencies Between Tests to Improve Defect Localization
+\cite{Kuhn08a}
+
+Using Dynamic Analysis for API Migration (PCODA)
+\cite{Haen08b}
+
+Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc)
+\cite{Haen09a}
+
+
+
+% ============================================================
+\section{EDD: TDD + Examples}\label{sec:edd}
+
+	EDD
+		Problems with Unit tests and TDD
+			Green tests are not useful
+				Except sometime to explore source code
+			How to start writing a test first?
+				“Guess first” to invent an API
+			Where to start coding to make the test pass?
+				“Guess first” to start coding
+		EDD: “Grow” examples through live programming
+			possible lifecycle (rough sketch to be refined)
+				Inspect an empty example
+				Live program some code for that object
+				Extract it as a method
+				Express an assertion
+				Add it to the example
+				Iterate
+
+
+% ============================================================
+\section{Moldable Examples}\label{sec:moldable}
+
+	Examples and MD
+		MD makes software systems explainable by augmenting the objects with dozens of tiny tools that answer questions about the system
+			Tools
+				Views
+				Actions
+				Searches
+				...
+		Examples are both input and output of MD
+			Input: raw example
+			Output: molded example augmented with tools
+		Basic EDD lifecycle is augmented with steps to let examples tell stories about themeselves
+		Just as examples are developed live, so are the tools
+
+% ============================================================
+\section{Explainable Systems using Examples}\label{sec:explainable}
+
+	
+		Examples can be embedded in live documentation
+		Project Diaries / Knowledge Bases
+			Notebook pages with live examples
+		GT Book as the prime example
+			Examples
+			Statistics
+
 
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
@@ -104,3 +203,4 @@
 \begin{inparaenum}[(i)]
 	\item ...
 \end{inparaenum}
+
