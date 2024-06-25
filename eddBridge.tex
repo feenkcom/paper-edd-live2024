@@ -73,23 +73,19 @@
 \renewcommand{\shortauthors}{Chi\c{s} et al.}
 
 \begin{abstract}
+Software systems should be \emph{explainable}, that is, they should help us to answer questions while exploring, developing or using them.
+Textual documentation is a very weak form of explanation, since it is not causally connected to the code, so easily gets out of date.
+\emph{Tests}, on the other hand, are causally connected to code, but they are also a weak form of explanation.
+Although some tests encode interesting scenarios that answer certain questions about how the system works, most tests tend to be uninteresting.
 
-	Abstract
-		We want our software systems to be explainable
-			Answer questions about the system while we are exploring, developing or using it
-		Tests are a weak form of explanation
-			Some tests encode interesting scenarios, but most don't
-		Textual documentation is also a weak form of explanation
-			Not causally connected to the code, so easily out of date
-		Examples are tests that are also factories for interesting cases
-			Are causally connected to the system
-				Always live and tested
-			Can be embedded into live documentation
-		We show
-			How EDD enriches TDD with live programming
-			How examples can be molded with tiny tools to answer analysis questions
-			How examples can be embedded in live documentation to make a system explainable
-
+\emph{Examples} are tests that are also factories for interesting system entities.
+Instead of simply succeeding or failing, an example returns the object under test so that it can be inspected, or reused to compose further tests.
+An example \emph{is} causally connected to the system, is always live and tested, and can be embedded into live documentation.
+Although technically examples constitute just a tiny modification to test methods, their impact is potentially ground breaking.
+We show
+(i) how EDD enriches TDD with live programming,
+(ii) how examples can be molded with tiny tools to answer analysis questions, and
+(iii) how examples can be embedded in live documentation to make a system explainable.
 \end{abstract}
 
 %\keywords{TODO.}
@@ -102,6 +98,14 @@
 
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
+
+Unit tests, as introduced by Beck and Gamma \cite{XXX}, exercise objects, known as \emph{fixtures}, and evaluate assertions over these objects.
+Fixtures are created with the help of shared \emph{setup} methods, and, once the test method succeeds or fails, are simply discarded.
+Only if a test fails do we have access to the fixture, from within the debugger.
+
+Gaelli noted that there was a missed opportunity here, and proposed a modified approach to unit testing in which tests return their fixtures, that is, they serve as factories for \emph{examples}~\cite{Gael06b}.
+% Modeling Examples to Test and Understand Software (PhD) \cite{Gael06b}
+
 
 
 	Background
@@ -122,8 +126,6 @@
 Composing Tests from Examples (JOT)
 \cite{Gael07a}
 
-Modeling Examples to Test and Understand Software (PhD)
-\cite{Gael06b}
 
 JExample: Exploiting Dependencies Between Tests to Improve Defect Localization
 \cite{Kuhn08a}
