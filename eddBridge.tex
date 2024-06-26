@@ -83,9 +83,10 @@ Instead of simply succeeding or failing, an example returns the object under tes
 An example \emph{is} causally connected to the system, is always live and tested, and can be embedded into live documentation.
 Although technically examples constitute just a tiny modification to test methods, their impact is potentially ground breaking.
 We show
-(i) how EDD enriches TDD with live programming,
-(ii) how examples can be molded with tiny tools to answer analysis questions, and
-(iii) how examples can be embedded in live documentation to make a system explainable.
+\begin{inparaenum}[(i)]
+	\item how EDD enriches TDD with live programming,
+	\item how examples can be molded with tiny tools to answer analysis questions, and	\item how examples can be embedded in live documentation to make a system explainable.
+\end{inparaenum}
 \end{abstract}
 
 %\keywords{TODO.}
@@ -119,9 +120,10 @@ JExample\footnote{\url{https://scg.unibe.ch/research/jexample}} extends JUnit 4,
 % https://scg.unibe.ch/research/jexample
 Interestingly, refactoring tests as examples establishes a partial order amongst test methods.
 The impact of this is that
-(i) code duplication is reduced as common preambles to complex tests are refactored as shared examples,
-and
-(ii) defect localization is improved since fewer tests will fail~\cite{Kuhn08a}.
+\begin{inparaenum}[(i)]
+	\item code duplication is reduced as common preambles to complex tests are refactored as shared examples, and
+	\item defect localization is improved since fewer tests will fail~\cite{Kuhn08a}.
+\end{inparaenum}
 % Kuhn08a JExample: Exploiting Dependencies Between Tests to Improve Defect Localization
 H{\"a}nsenberger showed that tests in the wild often contain much duplicated code.
 By performing dynamic analysis of tests, one can largely automate the process of migrating classical unit tests to examples~\cite{Haen08b,Haen09a}.
@@ -130,9 +132,11 @@ By performing dynamic analysis of tests, one can largely automate the process of
 
 Although examples are already interesting as a means to make explicit the otherwise implicit dependencies between tests to reduce duplicated code and improve defect localization, it turns out that examples can impact the software process in other, important ways.
 In the remainder of this paper, we will show how examples
-(i) enrich the TDD process with live programming opportunities,
-(ii) enable the \emph{moldable development} of tiny analysis tools, and
-(iii) offer a means to augment documentation with live, interactive examples, as a step towards making software systems explainable.
+\begin{inparaenum}[(i)]
+	\item enrich the TDD process with live programming opportunities,
+	\item enable the \emph{moldable development} of tiny analysis tools, and
+	\item offer a means to augment documentation with live, interactive examples, as a step towards making software systems explainable.
+\end{inparaenum}
 
 % ============================================================
 \section{EDD: TDD + Examples}\label{sec:edd}
@@ -143,24 +147,29 @@ Test-Driven Development (TDD)~\cite{Beck03a} offers a way not only to ensure tha
 % Beck03a Test Driven Development: By Example
 
 Ignoring the ideological debates that have been raging \todo{REF?} over the pros and cons of TDD and other Agile practices, we can observe the following issues with TDD.
-(i) TDD advocates that one should always start development by writing a test first.
+
+\begin{inparaenum}[(i)]
+	\item TDD advocates that one should always start development by writing a test first.
 But how do you know how to express what to test?
 In practice, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.
 Of course, this is how tests ``drive'' development, but could there be an easier way to get to the test code that you need to write?
-(ii) TDD then recommends that you write just enough code to make the test pass.
+	\item TDD then recommends that you write just enough code to make the test pass.
 But how do you know where to start coding?
 Again you have to ``guess first'' to figure out where to begin coding.
-(iii) Once you have a green test, what can you do with it except read the code?
+	\item Once you have a green test, what can you do with it except read the code?
 A red test is useful, as long as it brings you to a debugger that lets you explore why the test has failed, but a green test is uninteresting and useless.
 How could we make it useful?
+\end{inparaenum}
 
 \emph{Example-Driven Development} (EDD) offers a new take on TDD in which examples drive the development process.
 It is similar to TDD, but can differ in important ways by exploiting opportunities raised by live programming.
 In short,
-(i) instead of starting by writing a test, we start by inspecting a bare-bones example, and incrementally writing code that will become a test scenario to produce an interesting example,
-(ii) instead of writing code to make a test pass, we iteratively and incrementally grow the example, and extract assertions that express what is interesting about the example,
+\begin{inparaenum}[(i)]
+	\item instead of starting by writing a test, we start by inspecting a bare-bones example, and incrementally writing code that will become a test scenario to produce an interesting example,
+	\item instead of writing code to make a test pass, we iteratively and incrementally grow the example, and extract assertions that express what is interesting about the example,
 and
-(iii) the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
+	\item the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
+\end{inparaenum}
 
 Let's see how this can work with a small, running example.
 
@@ -210,8 +219,6 @@ Use the Prices use case?}
 \end{document}
 \endinput
 
-
 \begin{inparaenum}[(i)]
-	\item ...
+	\item 
 \end{inparaenum}
-
