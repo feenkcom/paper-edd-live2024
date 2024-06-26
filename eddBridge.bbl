@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{5}
+\begin{thebibliography}{8}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -37,14 +37,49 @@
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem[\protect\citeauthoryear{Gaelli}{Gaelli}{2006}]%
+\bibitem[Beck(1994)]%
+        {Beck94c}
+\bibfield{author}{\bibinfo{person}{Kent Beck}.}
+  \bibinfo{year}{1994}\natexlab{}.
+\newblock \showarticletitle{Simple {Smalltalk} Testing: With Patterns}.
+\newblock \bibinfo{journal}{\emph{The Smalltalk Report}} \bibinfo{volume}{4},
+  \bibinfo{number}{2} (\bibinfo{year}{1994}), \bibinfo{pages}{16--18}.
+\newblock
+\urldef\tempurl%
+\url{https://web.archive.org/web/20150315073817/http://www.xprogramming.com/testfram.htm}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Beck(2000)]%
+        {Beck00a}
+\bibfield{author}{\bibinfo{person}{Kent Beck}.}
+  \bibinfo{year}{2000}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Extreme Programming Explained: Embrace
+  Change}}.
+\newblock \bibinfo{publisher}{Addison Wesley}.
+\newblock
+\showISBNx{201616416}
+
+
+\bibitem[Beck(2003)]%
+        {Beck03a}
+\bibfield{author}{\bibinfo{person}{Kent Beck}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Test Driven Development: By Example}}.
+\newblock \bibinfo{publisher}{Addison-Wesley}.
+\newblock
+\showISBNx{0-321-14653-0}
+
+
+\bibitem[Gaelli(2006)]%
         {Gael06b}
 \bibfield{author}{\bibinfo{person}{Markus Gaelli}.}
   \bibinfo{year}{2006}\natexlab{}.
 \newblock \emph{\bibinfo{title}{Modeling Examples to Test and Understand
   Software}}.
-\newblock \bibinfo{thesistype}{Ph.D. Dissertation}. \bibinfo{school}{University
-  of Bern}.
+\newblock \bibinfo{thesistype}{Ph.\,D. Dissertation}.
+  \bibinfo{school}{University of Bern}.
 \newblock
 \urldef\tempurl%
 \url{http://scg.unibe.ch/archive/phd/gaelli-phd.pdf}
@@ -52,8 +87,7 @@
 \tempurl}
 
 
-\bibitem[\protect\citeauthoryear{Gaelli, Wampfler, and Nierstrasz}{Gaelli
-  et~al\mbox{.}}{2007}]%
+\bibitem[Gaelli et~al\mbox{.}(2007)]%
         {Gael07a}
 \bibfield{author}{\bibinfo{person}{Markus Gaelli}, \bibinfo{person}{Rafael
   Wampfler}, {and} \bibinfo{person}{Oscar Nierstrasz}.}
@@ -68,7 +102,7 @@
 \showDOI{\tempurl}
 
 
-\bibitem[\protect\citeauthoryear{H\"ansenberger}{H\"ansenberger}{2009}]%
+\bibitem[H\"ansenberger(2009)]%
         {Haen09a}
 \bibfield{author}{\bibinfo{person}{Lea H\"ansenberger}.}
   \bibinfo{year}{2009}\natexlab{}.
@@ -82,8 +116,7 @@
 \tempurl}
 
 
-\bibitem[\protect\citeauthoryear{H\"ansenberger, Kuhn, and
-  Nierstrasz}{H\"ansenberger et~al\mbox{.}}{2008}]%
+\bibitem[H\"ansenberger et~al\mbox{.}(2008)]%
         {Haen08b}
 \bibfield{author}{\bibinfo{person}{Lea H\"ansenberger}, \bibinfo{person}{Adrian
   Kuhn}, {and} \bibinfo{person}{Oscar Nierstrasz}.}
@@ -98,8 +131,7 @@
 \tempurl}
 
 
-\bibitem[\protect\citeauthoryear{Kuhn, Rompaey, H\"ansenberger, Nierstrasz,
-  Demeyer, Gaelli, and Leemput}{Kuhn et~al\mbox{.}}{2008}]%
+\bibitem[Kuhn et~al\mbox{.}(2008)]%
         {Kuhn08a}
 \bibfield{author}{\bibinfo{person}{Adrian Kuhn}, \bibinfo{person}{Bart~Van
   Rompaey}, \bibinfo{person}{Lea H\"ansenberger}, \bibinfo{person}{Oscar

@@ -101,10 +101,8 @@ We show
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
 
-\todo{add missing references}
-
-Unit tests, as originally introduced by Beck \cite{XXX}, exercise objects, known as \emph{fixtures}, and evaluate assertions over these objects.
-% Kent Beck, Simple Smalltalk Testing: With Patterns, , www.xprogramming.com/testfram.htm. 
+Unit tests, as originally introduced by Beck \cite{Beck94c}, exercise objects, known as \emph{fixtures}, and evaluate assertions over these objects.
+% Beck94c Simple Smalltalk Testing: With Patterns
 % See https://en.m.wikipedia.org/wiki/SUnit
 % https://web.archive.org/web/20150315073817/http://www.xprogramming.com/testfram.htm
 Fixtures are created with the help of shared \emph{setup} methods, and, once the test method succeeds or fails, are simply discarded.
@@ -117,7 +115,7 @@ Examples can then be composed to form higher-level scenarios~\cite{Gael07a}.
 % Gael07a Composing Tests from Examples (JOT)
 
 In principle, any XUnit testing framework, for language X, can be extended to support examples.
-JExample extends JUnit 4, allowing test methods not only to return examples, but also to accept as input one or more other examples from the same test example class~\cite{XXX}.
+JExample\footnote{\url{https://scg.unibe.ch/research/jexample}} extends JUnit 4, allowing test methods not only to return examples, but also to accept as input one or more other examples from the same test example class.
 % https://scg.unibe.ch/research/jexample
 Interestingly, refactoring tests as examples establishes a partial order amongst test methods.
 The impact of this is that
