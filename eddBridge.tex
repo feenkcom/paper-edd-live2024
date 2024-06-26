@@ -99,44 +99,36 @@ We show
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
 
-Unit tests, as introduced by Beck and Gamma \cite{XXX}, exercise objects, known as \emph{fixtures}, and evaluate assertions over these objects.
+\todo{add missing references}
+
+Unit tests, as originally introduced by Beck \cite{XXX}, exercise objects, known as \emph{fixtures}, and evaluate assertions over these objects.
+% Kent Beck, Simple Smalltalk Testing: With Patterns, , www.xprogramming.com/testfram.htm. 
+% See https://en.m.wikipedia.org/wiki/SUnit
+% https://web.archive.org/web/20150315073817/http://www.xprogramming.com/testfram.htm
 Fixtures are created with the help of shared \emph{setup} methods, and, once the test method succeeds or fails, are simply discarded.
 Only if a test fails do we have access to the fixture, from within the debugger.
 
 Gaelli noted that there was a missed opportunity here, and proposed a modified approach to unit testing in which tests return their fixtures, that is, they serve as factories for \emph{examples}~\cite{Gael06b}.
 % Modeling Examples to Test and Understand Software (PhD) \cite{Gael06b}
+The output of a test --- an example --- can then be (re-)used as the input (fixture) for another test.
+Examples can then be composed to form higher-level scenarios~\cite{Gael07a}.
+% Composing Tests from Examples (JOT) \cite{Gael07a}
 
+In principle, any XUnit testing framework, for language X, can be extended to support examples.
+JExample extends JUnit 4, allowing test methods not only to return examples, but also to accept as input one or more other examples from the same test example class~\cite{XXX}.
+% https://scg.unibe.ch/research/jexample
+Interestingly, refactoring tests as examples establishes a partial order amongst test methods.
+The impact of this is that
+(i) code duplication is reduced as common preambles to complex tests are refactored as shared examples,
+and
+(ii) defect localization is improved since fewer tests will fail~\cite{Kuhn08a}.
+% JExample: Exploiting Dependencies Between Tests to Improve Defect Localization \cite{Kuhn08a}
+H{\"a}nsenberger showed that tests in the wild often contain much duplicated code.
+By performing dynamic analysis of tests, one can largely automate the process of migrating classical unit tests to examples~\cite{Haen08b,Haen09a}.
+% Using Dynamic Analysis for API Migration (PCODA) \cite{Haen08b}
+% Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc) \cite{Haen09a}
 
-
-	Background
-		An old idea that was never seriously taken up
-			has new potential in the context of live systems
-		Core idea
-			Example = Test + Factory
-			Turn tests into factories that return the object under test
-			Gaelli PhD
-		Impact
-			Examples can be composed
-				JExample
-					cf Lea's MSc thesis
-				Reuse examples as setups
-				Reduce code duplication
-				Fewer failing tests
-
-Composing Tests from Examples (JOT)
-\cite{Gael07a}
-
-
-JExample: Exploiting Dependencies Between Tests to Improve Defect Localization
-\cite{Kuhn08a}
-
-Using Dynamic Analysis for API Migration (PCODA)
-\cite{Haen08b}
-
-Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc)
-\cite{Haen09a}
-
-
+\todo{Need segue to the following sections...}
 
 % ============================================================
 \section{EDD: TDD + Examples}\label{sec:edd}
