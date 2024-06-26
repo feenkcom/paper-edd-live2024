@@ -6,8 +6,8 @@
   \providecommand\BibTeX{{%
     Bib\TeX}}}
 \setcopyright{acmlicensed}
-\copyrightyear{2018}
-\acmYear{2018}
+\copyrightyear{2024}
+\acmYear{2024}
 \acmDOI{XXXXXXX.XXXXXXX}
 %% These commands are for a PROCEEDINGS abstract or paper.
 \acmConference[LIVE 2024]{LIVE 2024}{Oct.\ 20-25, 2024}{Pasadena, CA}
@@ -96,6 +96,8 @@ We show
 
 \maketitle
 
+% NB: Max 6 pages
+
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
 
@@ -109,10 +111,10 @@ Fixtures are created with the help of shared \emph{setup} methods, and, once the
 Only if a test fails do we have access to the fixture, from within the debugger.
 
 Gaelli noted that there was a missed opportunity here, and proposed a modified approach to unit testing in which tests return their fixtures, that is, they serve as factories for \emph{examples}~\cite{Gael06b}.
-% Modeling Examples to Test and Understand Software (PhD) \cite{Gael06b}
+% Gael06b Modeling Examples to Test and Understand Software (PhD)
 The output of a test --- an example --- can then be (re-)used as the input (fixture) for another test.
 Examples can then be composed to form higher-level scenarios~\cite{Gael07a}.
-% Composing Tests from Examples (JOT) \cite{Gael07a}
+% Gael07a Composing Tests from Examples (JOT)
 
 In principle, any XUnit testing framework, for language X, can be extended to support examples.
 JExample extends JUnit 4, allowing test methods not only to return examples, but also to accept as input one or more other examples from the same test example class~\cite{XXX}.
@@ -122,34 +124,51 @@ The impact of this is that
 (i) code duplication is reduced as common preambles to complex tests are refactored as shared examples,
 and
 (ii) defect localization is improved since fewer tests will fail~\cite{Kuhn08a}.
-% JExample: Exploiting Dependencies Between Tests to Improve Defect Localization \cite{Kuhn08a}
+% Kuhn08a JExample: Exploiting Dependencies Between Tests to Improve Defect Localization
 H{\"a}nsenberger showed that tests in the wild often contain much duplicated code.
 By performing dynamic analysis of tests, one can largely automate the process of migrating classical unit tests to examples~\cite{Haen08b,Haen09a}.
-% Using Dynamic Analysis for API Migration (PCODA) \cite{Haen08b}
-% Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc) \cite{Haen09a}
+% Haen08b Using Dynamic Analysis for API Migration (PCODA)
+% Haen09a Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc)
 
-\todo{Need segue to the following sections...}
+Although examples are already interesting as a means to make explicit the otherwise implicit dependencies between tests to reduce duplicated code and improve defect localization, it turns out that examples can impact the software process in other, important ways.
+In the remainder of this paper, we will show how examples
+(i) enrich the TDD process with live programming opportunities,
+(ii) enable the \emph{moldable development} of tiny analysis tools, and
+(iii) offer a means to augment documentation with live, interactive examples, as a step towards making software systems explainable.
 
 % ============================================================
 \section{EDD: TDD + Examples}\label{sec:edd}
 
-	EDD
-		Problems with Unit tests and TDD
-			Green tests are not useful
-				Except sometime to explore source code
-			How to start writing a test first?
-				“Guess first” to invent an API
-			Where to start coding to make the test pass?
-				“Guess first” to start coding
-		EDD: “Grow” examples through live programming
-			possible lifecycle (rough sketch to be refined)
-				Inspect an empty example
-				Live program some code for that object
-				Extract it as a method
-				Express an assertion
-				Add it to the example
-				Iterate
+A key motivation for integrating unit tests into mainstream software development was to enable continuous refactoring of evolving software systems \cite{Beck00a}.
+% Beck00a, Extreme Programming Explained: Embrace Change
+Test-Driven Development (TDD)~\cite{Beck03a} offers a way not only to ensure that tests are produced in tandem with the implementation of a software system, but importantly to exploit the potential for tests to serve as requirements that can drive the design and implementation process.
+% Beck03a Test Driven Development: By Example
 
+Ignoring the ideological debates that have been raging \todo{REF?} over the pros and cons of TDD and other Agile practices, we can observe the following issues with TDD.
+(i) TDD advocates that one should always start development by writing a test first.
+But how do you know how to express what to test?
+In practice, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.
+Of course, this is how tests ``drive'' development, but could there be an easier way to get to the test code that you need to write?
+(ii) TDD then recommends that you write just enough code to make the test pass.
+But how do you know where to start coding?
+Again you have to ``guess first'' to figure out where to begin coding.
+(iii) Once you have a green test, what can you do with it except read the code?
+A red test is useful, as long as it brings you to a debugger that lets you explore why the test has failed, but a green test is uninteresting and useless.
+How could we make it useful?
+
+\emph{Example-Driven Development} (EDD) offers a new take on TDD in which examples drive the development process.
+It is similar to TDD, but can differ in important ways by exploiting opportunities raised by live programming.
+In short,
+(i) instead of starting by writing a test, we start by inspecting a bare-bones example, and incrementally writing code that will become a test scenario to produce an interesting example,
+(ii) instead of writing code to make a test pass, we iteratively and incrementally grow the example, and extract assertions that express what is interesting about the example,
+and
+(iii) the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
+
+Let's see how this can work with a small, running example.
+
+\todo{Step through an EDD scenario as we did in the EDD blog.
+Use the Prices use case?}
+% https://lepiter.io/feenk/example-driven-development-ekmic0u0o8swpblzkcdzy608s/
 
 % ============================================================
 \section{Moldable Examples}\label{sec:moldable}
@@ -164,7 +183,7 @@ By performing dynamic analysis of tests, one can largely automate the process of
 		Examples are both input and output of MD
 			Input: raw example
 			Output: molded example augmented with tools
-		Basic EDD lifecycle is augmented with steps to let examples tell stories about themeselves
+		Basic EDD lifecycle is augmented with steps to let examples tell stories about themselves
 		Just as examples are developed live, so are the tools
 
 % ============================================================
