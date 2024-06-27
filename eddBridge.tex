@@ -182,18 +182,29 @@ Use the Prices use case?}
 
 \emph{Moldable development} is an approach to constructing \emph{explainable software systems} by augmenting the objects of the software system with dozens of tiny analysis tools that can answer questions about the system.
 Moldable development is made possible with the help of \emph{moldable tools}~\cite{Chis17a}, such as code browsers, debuggers, and object inspectors, that can adapt themselves to the run-time context of an application to enable these analysis tools.
-
-
-
-MD makes software systems explainable by augmenting the objects with dozens of tiny tools that answer questions about the system
-
 % Chis17a Moldable Tools for Object-oriented Development
 
-Tools
-    Views
-    Actions
-    Searches
-    ...
+For example, consider the screenshot of the Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} in figure \todo{copy from MD patterns paper}.
+At the left we see in an object inspector a GUI \emph{Board} view of a running instance of the game that has terminated with player B winning.
+In the middle we see a \emph{Moves} view of the same instance, showing us all the past moves leading to the concluding state of the game.
+Finally, at the right we inspect a particular move, showing us how the game state was updated in move \#109.
+
+These views have each been created with a few lines of code, in the first and last cases leveraging the existing GUI view of the Ludo game.
+The object inspector recognizes that the Ludo game object is an instance of the \st{GtLudoRecordingGame} class, 
+\todo{fix hyphenation}
+which has been extended with several custom views defined as annotated methods of that class.
+Similarly the move object is an instance of the \st{GtLudoMove} class, which has been extended with other views specific to moves.
+
+Other custom tools include
+\begin{inparaenum}[(i)]
+	\item \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and
+	\item \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
+\end{inparaenum}
+\todo{others?}
+
+
+
+
     
 Examples are both input and output of MD
 Input: raw example
