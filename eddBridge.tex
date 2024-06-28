@@ -146,8 +146,7 @@ A key motivation for integrating unit tests into mainstream software development
 Test-Driven Development (TDD)~\cite{Beck03a} offers a way not only to ensure that tests are produced in tandem with the implementation of a software system, but importantly to exploit the potential for tests to serve as requirements that can drive the design and implementation process.
 % Beck03a Test Driven Development: By Example
 
-Ignoring the ideological debates that have been raging \todo{REF?} over the pros and cons of TDD and other Agile practices, we can observe the following issues with TDD.
-
+Ignoring ongoing ideological debates over the pros and cons of TDD and other Agile practices, we can observe the following issues with TDD.
 \begin{inparaenum}[(i)]
 	\item TDD advocates that one should always start development by writing a test first.
 But how do you know how to express what to test?
@@ -171,13 +170,42 @@ and
 	\item the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
 \end{inparaenum}
 
+
+\begin{figure}[ht]
+  \includegraphics[width=\columnwidth]{edd1-ConcretePrice100Euros}
+  \includegraphics[width=\columnwidth]{edd2-PrototypingAsPrice}
+  \includegraphics[width=\columnwidth]{edd3-ExtractAsPrice}
+  \includegraphics[width=\columnwidth]{edd4-MoneyAsPrice}
+   \caption{Building an example.}
+  \label{fig:exampleCreation}
+\end{figure}
+
 Let's see how this can work with a small, running example.
 
 \todo{Introduce GT}
 
+Glamorous Toolkit (GT)\footnote{\url{https://gtoolkit.com}} ...
+
+In \autoref{fig:exampleCreation} ...
+
+
+In \autoref{fig:exampleExtraction} ...
+
+
 \todo{Step through an EDD scenario as we did in the EDD blog.
 Use the Prices use case?}
 % https://lepiter.io/feenk/example-driven-development-ekmic0u0o8swpblzkcdzy608s/
+
+\begin{figure}[ht]
+  \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
+  \includegraphics[width=\columnwidth]{edd6-PriceExample}
+  \includegraphics[width=\columnwidth]{edd7-FailedTest}
+  \includegraphics[width=\columnwidth]{edd8-ImplementingEquals}
+  \includegraphics[width=\columnwidth]{edd9ExampleWithAssertions}
+  \caption{Extracting an example method.}
+  \label{fig:exampleExtraction}
+\end{figure}
+
 
 % ============================================================
 \section{Moldable Examples}\label{sec:moldable}
@@ -187,26 +215,53 @@ It can be understood as a refinement of EDD in which objects (examples) are enha
 
 Moldable development is made possible with the help of \emph{moldable tools}~\cite{Chis17a}, such as code browsers, debuggers, and object inspectors, that can adapt themselves to the run-time context of an application to enable these analysis tools.
 % Chis17a Moldable Tools for Object-oriented Development
-For example, consider the screenshot of the Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} in figure \todo{copy from MD patterns paper}.
+For example, consider the screenshot of the Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} in figure \autoref{fig:ludoViews}.
 At the left we see in an object inspector a GUI \emph{Board} view of a running instance of the game that has terminated with player B winning.
 In the middle we see a \emph{Moves} view of the same instance, showing us all the past moves leading to the concluding state of the game.
 Finally, at the right we inspect a particular move, showing us how the game state was updated in move \#109.
 
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{customViews}
+  \caption{Custom views of a Ludo game.}
+  \label{fig:ludoViews}
+\end{figure}
+
 These views have each been created with a few lines of code, in the first and last cases leveraging the existing GUI view of the Ludo game.
-The object inspector recognizes that the Ludo game object is an instance of the \st{GtLudoRecordingGame} class, 
-\todo{fix hyphenation}
+The object inspector recognizes that the Ludo game object is an instance of the \lst{GtLudoRecordingGame} class, 
 which has been extended with several custom views defined as annotated methods of that class.
 Similarly the move object is an instance of the \st{GtLudoMove} class, which has been extended with other views specific to moves.
 
 Two other common types of custom tools are \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
 
 Examples are both the input and output of moldable development.
-Typically we start with a ``raw'', unenhanced example, such as in figure \todo{raw Ludo and/or raw Price}.
+Typically we start with a ``raw'', unenhanced example, such as we see in \autoref{fig:exampleCreation}: the \st{aConcretePrice} inspector views all show just a basic view of the instance state of the example.
 As we elaborate the examples in the EDD process, we mold them with custom tools that validate the requirements expressed by the examples.
 The output of the process is then a molded example that not only checks assertions about its expected behavior, but also exposes that behavior through custom tools.
 
 Let's see how this works.
 \todo{Go back to the Price examples from the last section, and see how custom tools enhance the examples}
+
+\autoref{fig:ConcretePrice}
+\autoref{fig:DiscountedPrice}
+
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{md1-ConcretePrice}
+  \caption{xxx.}
+  \label{fig:ConcretePrice}
+\end{figure}
+
+
+
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{md2-DiscountedPrice}
+  \caption{xxx.}
+  \label{fig:DiscountedPrice}
+\end{figure}
+
+
+
 
 
 % ============================================================
@@ -222,18 +277,60 @@ This simple feature enables the creation of various kinds of live documentation,
 
 Let's see a few examples from the GT book, the knowledge base that comes bundled with the GT download.
 
-In figure \todo{} we see pages of a tutorial explaining how to build a graphical user interface using examples of a ``Memory'' game.
+In \autoref{fig:Memory} we see pages of a tutorial explaining how to build a graphical user interface using examples of a ``Memory'' game.
 \todo{explain the figure}
 
-Figure \todo{SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{book1-Memory}
+  \caption{xxx.}
+  \label{fig:Memory}
+\end{figure}
+
+
+
+
+\autoref{fig:SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
 \todo{explain the figure}
+
+
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{book2-SPL}
+  \caption{xxx.}
+  \label{fig:SPL}
+\end{figure}
+
+\st{SPLCaseStudyExamples >> #print3plus4 | noCode=true | previewShow=#gtStateFor:}
+
 
 Examples can also be used effectively to explain algorithms.
-In figure \todo{treemap} we see a notebook page that explains how a treemap layout algorithm works with the help of live examples.
+In \autoref{fig:Treemap} we see a notebook page that explains how a treemap layout algorithm works with the help of live examples.
 
-Figure \todo{} shows how examples can be used within notebook pages that explain the moldable development process in terms of a number of patterns.
+
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{book3-Treemap}
+  \caption{xxx.}
+  \label{fig:Treemap}
+\end{figure}
+
+
+
+
+\autoref{fig:Patterns} shows how examples can be used within notebook pages that explain the moldable development process in terms of a number of patterns.
 \todo{cite the patterns paper}
 \todo{explain the figure}
+
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{book4-MDPatterns}
+  \caption{xxx.}
+  \label{fig:Patterns}
+\end{figure}
+
+
+
 
 All of these illustrations show not only how example methods can be used productively to produce live documentation, but that by applying moldable development principles, the live examples can be easily enhanced with lightweight, custom tools that serve to make the examples, and the systems they are part of, truly explainable.
 
@@ -260,6 +357,13 @@ The idea of notebooks with embedded examples is not new, but combining them with
 
 % The concept of live, interactive examples embedded within documentation has evolved significantly over time. Early examples of interactive computing include the work of Douglas Engelbart, who developed the NLS (oN-Line System) at SRI in the 1960s. NLS was one of the first systems to support hypertext, which allowed for interactive document navigation and editing, laying the groundwork for future interactive documentation systems【7†source】【9†source】.
 
+\todo{refer to Bush's memex vision from the 40s? -- Bush, Vannevar, "As We May Think," The Atlantic Monthly (July 1945). Mentions idea of trails of documents.}
+\todo{cite Engelbart https://dougengelbart.org/content/view/138/000/ refers to linki ng and association}
+
+\todo{
+Notebook systems such as Jupyter (REF), MATLAB Live Scripts (REF) and Wolfram Notebooks (REF) all offer the ability to embed live instances of classes within notebook pages, but these live examples are neither integrated with unit testing frameworks, not do they support custom tooling with the help of moldable tools to tailor the user experience.
+}
+
 %   - Jupyter Notebooks allow for the creation of interactive documents with live code, visualizations, and text. Using IPyWidgets, users can create interactive widgets that are instances of Python classes. These widgets can be manipulated in real-time to update and display results within the notebook. This is particularly useful for educational purposes and exploratory data analysis in object-oriented programming environments like Python【7†source】.
 
 %   - MATLAB Live Scripts support the creation of interactive documents that combine code, text, and visualizations. MATLAB, being an object-oriented programming language, allows users to create instances of classes within these live scripts. For example, users can define a class for a control system and then create instances of this class within a live script to dynamically interact with and visualize the system's behavior【8†source】.
@@ -269,7 +373,7 @@ The idea of notebooks with embedded examples is not new, but combining them with
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
 
-
+\todo{Somewhere refer to MD patterns \cite{Nier24a} and moldable excptions \cite{Chis24a}}
 
 %\begin{acks}
 %\end{acks}
@@ -287,3 +391,12 @@ The idea of notebooks with embedded examples is not new, but combining them with
 \begin{inparaenum}[(i)]
 	\item 
 \end{inparaenum}
+
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{xxx}
+  \caption{xxx.}
+  \label{fig:xxx}
+\end{figure}
+
+
