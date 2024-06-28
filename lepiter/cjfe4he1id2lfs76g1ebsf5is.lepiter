@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-09T09:32:23.297094+02:00"
+						"dateAndTimeString" : "2024-06-28T14:43:51.609944+02:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-09T09:32:23.297094+02:00"
+						"dateAndTimeString" : "2024-06-28T14:44:07.449387+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "AK5DxdHWDQCFfx0vAV0tzg=="
+					"uidString" : "ed4oVlTYDQCOJY+pDFHP0w=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "This is the repo for a paper submission to [LIVE 2024](https://2024.splashcon.org/home/live-2024) on `Example-driven development: bridging tests and documentation`."
+				"string" : "We can show examples from the elaborated Prices."
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-09T09:32:15.746369+02:00"
+						"dateAndTimeString" : "2024-06-28T14:44:26.87526+02:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-09T09:32:23.30614+02:00"
+						"dateAndTimeString" : "2024-06-28T14:44:48.942289+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "pwnSw9HWDQCFAH8AAV0tzg=="
+					"uidString" : "wvNCWFTYDQCVYbWeDFHP0w=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "The repo contains both the LaTeX sources and the related GT code Lepiter pages."
+				"string" : "A concrete price: {{gtMethod:name=GtDPriceExamples>>#concretePrice}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -92,7 +92,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-09T09:32:27.755385+02:00"
+						"dateAndTimeString" : "2024-06-28T14:44:50.555902+02:00"
 					}
 				},
 				"editEmail" : {
@@ -103,17 +103,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:11:18.689146+02:00"
+						"dateAndTimeString" : "2024-06-28T14:45:00.726709+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "HriHxdHWDQCFhX7vAV0tzg=="
+					"uidString" : "SE2sWVTYDQCZ1JVADFHP0w=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "[[EDD Figures]] "
+				"string" : "A price discounted twice: {{gtMethod:name=GtDPriceExamples>>#concretePriceDiscountedByMoneyAndDiscountedByPercentage}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -129,7 +129,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:43:37.477268+02:00"
+						"dateAndTimeString" : "2024-06-28T14:44:24.15247+02:00"
 					}
 				},
 				"editEmail" : {
@@ -140,54 +140,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:43:47.928959+02:00"
+						"dateAndTimeString" : "2024-06-28T14:44:24.15247+02:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "xzVRVVTYDQCLRmURDFHP0w=="
+					"uidString" : "DWwZWFTYDQCVPsN1DFHP0w=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "[[MD examples]]"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:55:38.541733+02:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:55:45.496592+02:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "28dLgFTYDQCfA6YwDFHP0w=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "[[BookExamples]]"
+				"string" : ""
 			}
 		]
 	},
@@ -199,7 +162,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-06-09T09:30:50.85955+02:00"
+			"dateAndTimeString" : "2024-06-28T14:43:51.45947+02:00"
 		}
 	},
 	"editEmail" : {
@@ -210,15 +173,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-06-09T09:31:17.694179+02:00"
+			"dateAndTimeString" : "2024-06-28T14:43:51.45947+02:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "EDD Live paper ToC"
+		"title" : "MD examples"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "9839c1bf-d1d6-0d00-8395-4ee9015d2dce"
+		"uuid" : "b4912656-54d8-0d00-8e0c-123e0c51cfd3"
 	}
 }
