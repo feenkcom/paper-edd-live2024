@@ -16,7 +16,6 @@
 \input{macros}
 \input{st80.tex}
 \usepackage{subfigure}
-\usepackage{subcaption}
 % ============================================================
 % Macros for this paper
 \newcommand*{\smallimg}[1]{%
@@ -172,25 +171,33 @@ and
 	\item the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
 \end{inparaenum}
 
-
 \begin{figure}[ht]
-\begin{subfigure}
+\centering
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd1-ConcretePrice100Euros}
-\end{subfigure}
-\begin{subfigure}
+  \label{fig:exampleCreationA}
+  }\qquad
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd2-PrototypingAsPrice}
-\end{subfigure}
-\begin{subfigure}
+  \label{fig:exampleCreationB}
+  }\qquad
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd3-ExtractAsPrice}
-\end{subfigure}
-\begin{subfigure}
+  \label{fig:exampleCreationC}
+  }\qquad
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd4-MoneyAsPrice}
-\end{subfigure}
-   \caption{Building an example.}
+  \label{fig:exampleCreationC}
+  }\qquad
+  \caption{Building an example.}
   \label{fig:exampleCreation}
 \end{figure}
 
 Let's see how this can work with a small, running example.
+Suppose we already have a library of classes implementing amounts of \st{Money} in various currencies.
+Now we would like to implement \emph{prices} for goods, where a \st{Price} may be a concrete, fixed price, or a \emph{discounted} price, where the discount may be a fixed value or a percentage.
+
+\here
 
 \todo{Introduce GT}
 
@@ -207,11 +214,22 @@ Use the Prices use case?}
 % https://lepiter.io/feenk/example-driven-development-ekmic0u0o8swpblzkcdzy608s/
 
 \begin{figure}[ht]
+\centering
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
+  }\qquad
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd6-PriceExample}
+  }\qquad
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd7-FailedTest}
-  \includegraphics[width=\columnwidth]{edd8-ImplementingEquals}
+  }\qquad
+%\subfigure[xxx]{
+%  \includegraphics[width=\columnwidth]{edd8-ImplementingEquals}
+%  }\qquad
+\subfigure[xxx]{
   \includegraphics[width=\columnwidth]{edd9ExampleWithAssertions}
+  }\qquad
   \caption{Extracting an example method.}
   \label{fig:exampleExtraction}
 \end{figure}
