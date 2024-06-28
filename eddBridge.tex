@@ -50,7 +50,7 @@
 \begin{document}
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Example-driven development: \\ bridging tests and documentation}
+\title[Example-driven development: bridging tests and documentation]{Example-driven development: \\ bridging tests and documentation}
 \author{Andrei Chi\c{s}}
 \affiliation{%
   \institution{feenk gmbh}
@@ -173,6 +173,8 @@ and
 
 Let's see how this can work with a small, running example.
 
+\todo{Introduce GT}
+
 \todo{Step through an EDD scenario as we did in the EDD blog.
 Use the Prices use case?}
 % https://lepiter.io/feenk/example-driven-development-ekmic0u0o8swpblzkcdzy608s/
@@ -181,9 +183,10 @@ Use the Prices use case?}
 \section{Moldable Examples}\label{sec:moldable}
 
 \emph{Moldable development} is an approach to constructing \emph{explainable software systems} by augmenting the objects of the software system with dozens of tiny analysis tools that can answer questions about the system.
+It can be understood as a refinement of EDD in which objects (examples) are enhanced with custom tools during the development process.
+
 Moldable development is made possible with the help of \emph{moldable tools}~\cite{Chis17a}, such as code browsers, debuggers, and object inspectors, that can adapt themselves to the run-time context of an application to enable these analysis tools.
 % Chis17a Moldable Tools for Object-oriented Development
-
 For example, consider the screenshot of the Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} in figure \todo{copy from MD patterns paper}.
 At the left we see in an object inspector a GUI \emph{Board} view of a running instance of the game that has terminated with player B winning.
 In the middle we see a \emph{Moves} view of the same instance, showing us all the past moves leading to the concluding state of the game.
@@ -195,49 +198,91 @@ The object inspector recognizes that the Ludo game object is an instance of the 
 which has been extended with several custom views defined as annotated methods of that class.
 Similarly the move object is an instance of the \st{GtLudoMove} class, which has been extended with other views specific to moves.
 
-Other custom tools include
-\begin{inparaenum}[(i)]
-	\item \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and
-	\item \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
-\end{inparaenum}
-\todo{others?}
+Two other common types of custom tools are \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
 
+Examples are both the input and output of moldable development.
+Typically we start with a ``raw'', unenhanced example, such as in figure \todo{raw Ludo and/or raw Price}.
+As we elaborate the examples in the EDD process, we mold them with custom tools that validate the requirements expressed by the examples.
+The output of the process is then a molded example that not only checks assertions about its expected behavior, but also exposes that behavior through custom tools.
 
+Let's see how this works.
+\todo{Go back to the Price examples from the last section, and see how custom tools enhance the examples}
 
-
-    
-Examples are both input and output of MD
-Input: raw example
-Output: molded example augmented with tools
-
-Basic EDD lifecycle is augmented with steps to let examples tell stories about themselves
-Just as examples are developed live, so are the tools
 
 % ============================================================
 \section{Explainable Systems using Examples}\label{sec:explainable}
 
-	
-		Examples can be embedded in live documentation
-		Project Diaries / Knowledge Bases
-			Notebook pages with live examples
-		GT Book as the prime example
-			Examples
-			Statistics
+\todo{Add something about creating narratives -- the custom views allow you to create both fixed narratives as notebook pages, and dynamic narratives by navigating to new views}
 
+Perhaps the most compelling use of examples is within live documentation.
+GT includes support for knowledge bases consisting of linked notebook pages that are composed various kinds of snippets: formatted test, images, code in various programming languages, and live examples.
+An example snippet identified an example method to be evaluated, and a views to be rendered when the notebook page is loaded.
+
+This simple feature enables the creation of various kinds of live documentation, such as live project diaries, interactive tutorials, and live API documentation.
+
+Let's see a few examples from the GT book, the knowledge base that comes bundled with the GT download.
+
+In figure \todo{} we see pages of a tutorial explaining how to build a graphical user interface using examples of a ``Memory'' game.
+\todo{explain the figure}
+
+Figure \todo{SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
+\todo{explain the figure}
+
+Examples can also be used effectively to explain algorithms.
+In figure \todo{treemap} we see a notebook page that explains how a treemap layout algorithm works with the help of live examples.
+
+Figure \todo{} shows how examples can be used within notebook pages that explain the moldable development process in terms of a number of patterns.
+\todo{cite the patterns paper}
+\todo{explain the figure}
+
+All of these illustrations show not only how example methods can be used productively to produce live documentation, but that by applying moldable development principles, the live examples can be easily enhanced with lightweight, custom tools that serve to make the examples, and the systems they are part of, truly explainable.
+
+\todo{statistics on examples, snippets, pages etc.}
+
+
+% ============================================================
+\section{Related work}\label{sec:related}
+
+The \emph{Test Data Builder} pattern~\cite{Free09a} introduces factory methods for test fixtures, also potentially reducing code duplication in tests, but the resulting objects are only intended as inputs for tests, not their outputs.
+The resulting examples are not accessible as the output of a green test.
+
+Cucumber~\cite{Hell17a} is a software tool that supports Behavior-Driven Development through business rules specified in the Gherkin language.
+These rules include the specification of ``examples'' (AKA scenarios) that illustrate business rules.
+The usage of these examples, however, is restricted to the context of the business rules, and they are not intended as the outputs of tests.
+
+Modern testing frameworks such as pytest~\cite{Okke22a}, allow tests to be parameterized by fixtures specified as separate methods.
+Here too, however, fixtures are only seen as inputs to tests, not as outputs.
+
+\todo{Something about notebooks and live examples ...
+The idea of notebooks with embedded examples is not new, but combining them with tests and lightweight, custom tools to create narratives is new.}
+
+% ChatGPT results to be checked and adapted
+
+% The concept of live, interactive examples embedded within documentation has evolved significantly over time. Early examples of interactive computing include the work of Douglas Engelbart, who developed the NLS (oN-Line System) at SRI in the 1960s. NLS was one of the first systems to support hypertext, which allowed for interactive document navigation and editing, laying the groundwork for future interactive documentation systems【7†source】【9†source】.
+
+%   - Jupyter Notebooks allow for the creation of interactive documents with live code, visualizations, and text. Using IPyWidgets, users can create interactive widgets that are instances of Python classes. These widgets can be manipulated in real-time to update and display results within the notebook. This is particularly useful for educational purposes and exploratory data analysis in object-oriented programming environments like Python【7†source】.
+
+%   - MATLAB Live Scripts support the creation of interactive documents that combine code, text, and visualizations. MATLAB, being an object-oriented programming language, allows users to create instances of classes within these live scripts. For example, users can define a class for a control system and then create instances of this class within a live script to dynamically interact with and visualize the system's behavior【8†source】.
+
+%   - Wolfram Notebooks provide an environment for interactive computation and documentation. Mathematica supports object-oriented programming, allowing users to define classes and create instances within a notebook. These instances can then be manipulated interactively, with results and visualizations updating in real-time. This integration supports a wide range of scientific and engineering applications【7†source】.
 
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
 
 
+
 %\begin{acks}
 %\end{acks}
+
+% ============================================================
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{eddBridge}
 
-
 \end{document}
 \endinput
+
+% ============================================================
 
 \begin{inparaenum}[(i)]
 	\item 
