@@ -15,6 +15,8 @@
 % ============================================================
 \input{macros}
 \input{st80.tex}
+\usepackage{subfigure}
+\usepackage{subcaption}
 % ============================================================
 % Macros for this paper
 \newcommand*{\smallimg}[1]{%
@@ -172,10 +174,18 @@ and
 
 
 \begin{figure}[ht]
+\begin{subfigure}
   \includegraphics[width=\columnwidth]{edd1-ConcretePrice100Euros}
+\end{subfigure}
+\begin{subfigure}
   \includegraphics[width=\columnwidth]{edd2-PrototypingAsPrice}
+\end{subfigure}
+\begin{subfigure}
   \includegraphics[width=\columnwidth]{edd3-ExtractAsPrice}
+\end{subfigure}
+\begin{subfigure}
   \includegraphics[width=\columnwidth]{edd4-MoneyAsPrice}
+\end{subfigure}
    \caption{Building an example.}
   \label{fig:exampleCreation}
 \end{figure}
@@ -353,27 +363,30 @@ Here too, however, fixtures are only seen as inputs to tests, not as outputs.
 \todo{Something about notebooks and live examples ...
 The idea of notebooks with embedded examples is not new, but combining them with tests and lightweight, custom tools to create narratives is new.}
 
-% ChatGPT results to be checked and adapted
+Bush was the first to dream of a computerized ``memex'' of stored knowledge~\cite{Bush45a}, through which a user could trace an associate ``trail'' of interconnected text and multimedia resources.
+The memex inspired Engelbart's NLS~\cite{Enge68a}, the first system to demonstrate human interaction with a computer mouse, windows, and hypertext features.
+Knuth first pioneered the implementation of a computational notebook, called WEB, to support ``literate programming'' through the combination of text, graphics, and live code~\cite{Knut97a}.
 
-% The concept of live, interactive examples embedded within documentation has evolved significantly over time. Early examples of interactive computing include the work of Douglas Engelbart, who developed the NLS (oN-Line System) at SRI in the 1960s. NLS was one of the first systems to support hypertext, which allowed for interactive document navigation and editing, laying the groundwork for future interactive documentation systems【7†source】【9†source】.
-
-\todo{refer to Bush's memex vision from the 40s? -- Bush, Vannevar, "As We May Think," The Atlantic Monthly (July 1945). Mentions idea of trails of documents.}
-\todo{cite Engelbart https://dougengelbart.org/content/view/138/000/ refers to linki ng and association}
-
-\todo{
-Notebook systems such as Jupyter (REF), MATLAB Live Scripts (REF) and Wolfram Notebooks (REF) all offer the ability to embed live instances of classes within notebook pages, but these live examples are neither integrated with unit testing frameworks, not do they support custom tooling with the help of moldable tools to tailor the user experience.
-}
-
-%   - Jupyter Notebooks allow for the creation of interactive documents with live code, visualizations, and text. Using IPyWidgets, users can create interactive widgets that are instances of Python classes. These widgets can be manipulated in real-time to update and display results within the notebook. This is particularly useful for educational purposes and exploratory data analysis in object-oriented programming environments like Python【7†source】.
-
-%   - MATLAB Live Scripts support the creation of interactive documents that combine code, text, and visualizations. MATLAB, being an object-oriented programming language, allows users to create instances of classes within these live scripts. For example, users can define a class for a control system and then create instances of this class within a live script to dynamically interact with and visualize the system's behavior【8†source】.
-
-%   - Wolfram Notebooks provide an environment for interactive computation and documentation. Mathematica supports object-oriented programming, allowing users to define classes and create instances within a notebook. These instances can then be manipulated interactively, with results and visualizations updating in real-time. This integration supports a wide range of scientific and engineering applications【7†source】.
+Modern notebook systems such as Jupyter\footnote{\url{https://jupyter.org}}, MATLAB Live Scripts\footnote{\url{https://www.mathworks.com/}} and Wolfram Notebooks\footnote{\url{https://www.wolfram.com/notebooks/}} all offer the ability to embed live instances of classes within notebook pages, but these live examples are neither integrated with unit testing frameworks, not do they support custom tooling with the help of moldable tools to tailor the user experience.
 
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
 
-\todo{Somewhere refer to MD patterns \cite{Nier24a} and moldable excptions \cite{Chis24a}}
+\todo{Somewhere refer to MD patterns \cite{Nier24a} and moldable exceptions \cite{Chis24a}?}
+
+\todo{
+Summary:\\
+- having tests be factories for examples is a tiny, but groundbreaking enhancement\\
+- EDD enhances TDD by making examples rather than tests the focus in the development process\\
+- by enhancing examples with lightweight, custom tools, they help users answer all kinds of analysis questions\\
+- by embedding examples in live documentation, they make software systems explainable.
+}
+
+\todo{
+Concluding points:\\
+- ...
+}
+
 
 %\begin{acks}
 %\end{acks}
