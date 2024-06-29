@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:55:45.496592+02:00"
+						"dateAndTimeString" : "2024-06-28T14:56:22.135491+02:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "[[BookExamples]]"
+				"string" : "[[GT Book Examples]]"
 			}
 		]
 	},
