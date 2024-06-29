@@ -199,7 +199,7 @@ In this way, EDD helps us to make small steps towards both specifying the test e
 We can see this illustrated in \autoref{fig:exampleCreationA} where we start (leftmost pane) by writing a snippet that creates a new \lst{ConcretePrice} object with \st{100 euros} as its \st{money} value.
 With the help of \emph{fixit dialogues} (not shown) we create the new class with a \st{money} slot (instance variable) and setter method.
 We can then inspect the new, raw \st{ConcretePrice} (middle pane), showing that its \st{money} slot is properly initialized.
-We can also click on that slot, and inspect its value as well (rightmost pane).
+We can also click on that slot, and inspect its value (rightmost pane).
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd2-PrototypingAsPrice}
@@ -212,7 +212,7 @@ In the context of the live \st{100 euro} \st{Money} object (\autoref{fig:example
 \begin{code}
 ConcretePrice new money: self; yourself.
 \end{code}
-Note that \st{self} is bound to the live object we are inspecting)
+Note that \st{self} is bound to the live object we are inspecting.
 Evaluating this snippet and inspecting the result (right pane) gives us the \st{ConcretePrice} object that we expect.
 
 \begin{figure}[h]
@@ -235,31 +235,6 @@ Now we can go back to our original snippet (\autoref{fig:exampleCreationD}, left
 \begin{code}
 100 euros asPrice.
 \end{code}
-
-%\begin{figure}[t]
-%\centering
-%\subfigure[Extracting an example method.]{
-%  \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
-%  \label{fig:exampleExtractionA}
-%  }\qquad
-%\subfigure[The extracted example method.]{
-%  \includegraphics[width=\columnwidth]{edd6-PriceExample}
-%  \label{fig:exampleExtractionB}
-%  }\qquad
-%\subfigure[Prototyping an assertion.]{
-%  \includegraphics[width=\columnwidth]{edd7-FailedTest}
-%  \label{fig:exampleExtractionC}
-%  }\qquad
-%%\subfigure[xxx]{
-%%  \includegraphics[width=\columnwidth]{edd8-ImplementingEquals}
-%%  }\qquad
-%\subfigure[Adding the assertion to the example method.]{
-%  \includegraphics[width=\columnwidth]{edd9ExampleWithAssertions}
-%  \label{fig:exampleExtractionD}
-%  }\qquad
-%  \caption{Extracting an example method.}
-%  \label{fig:exampleExtraction}
-%\end{figure}
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
@@ -329,16 +304,15 @@ Similarly the move object is an instance of the \st{GtLudoMove} class, which has
 Two other common types of custom tools are \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
 
 Examples are both the input and output of moldable development.
-Typically we start with a ``raw'', unenhanced example, such as we see in \autoref{fig:exampleCreationB}: the \st{aConcretePrice} inspector views all show just a basic view of the instance state of the example.
+Typically we start with a ``raw'', unenhanced example, such as we see in \autoref{fig:exampleCreationB}: the \st{aConcretePrice} inspector view shows just a basic ``raw'' view of the instance state of the example.
 As we elaborate the examples in the EDD process, we mold them with custom tools that validate the requirements expressed by the examples.
 The output of the process is then a molded example that not only checks assertions about its expected behavior, but also exposes that behavior through custom tools.
 
-Let's see how this works.
 In \autoref{fig:ConcretePrice} we see another demo version of our \st{ConcretePrice} class called \st{GtDConcretePrice}.
 It has a custom view called \emph{Overview} (left pane) showing that the price is just a fixed amount of money.
 In the right pane we see the code that implements this custom view.
 The details of the implementation are not important here, but please note that this method consist of just a dozen lines or so of boilerplate code.
-Most custom views in GT are short, and the average size of these methods is about a dozen lines of code.
+Most custom views in GT are short, and the average size of these methods is about a dozen lines.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{md1-ConcretePrice}
@@ -361,8 +335,8 @@ In this case, the \emph{Overview} explains how the price has been calculated as 
 %\todo{Add something about creating narratives -- the custom views allow you to create both fixed narratives as notebook pages, and dynamic narratives by navigating to new views}
 
 Perhaps the most compelling use of examples is within live documentation.
-GT includes support for knowledge bases consisting of linked notebook pages that are composed various kinds of snippets: formatted test, images, code in various programming languages, and live examples.
-An example snippet identified an example method to be evaluated, and a views to be rendered when the notebook page is loaded.
+GT includes support for knowledge bases consisting of linked notebook pages that are composed of various kinds of snippets: formatted test, images, code in various programming languages, and live examples.
+An example snippet identified an example method to be evaluated, and a view to be rendered when the notebook page is loaded.
 
 This simple feature enables the creation of various kinds of live documentation, such as live project diaries, interactive tutorials, and live API documentation.
 
@@ -377,19 +351,22 @@ The page contains a live, embedded example of a partially played Memory game wit
   \label{fig:Memory}
 \end{figure}
 
-\autoref{fig:SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
-We see an embedded example of a live interpreter of the SPL language.
-At the bottom of the example snippet we can also see how the snippet was specified, by naming the example class and method (\st{SPLCaseStudyExamples >> #print3plus4}), specifying that we do not want to see the code of the example (\st{noCode=true}), and finally which custom view of the example we would like to see instead (\st{previewShow=#gtStateFor:}).
+% ON: Skip the SPL example to save space.
 
-\begin{figure}[h]
-  \includegraphics[width=\columnwidth]{book2-SPL}
-  \caption{Implementing a simple programming language.}
-  \label{fig:SPL}
-\end{figure}
+% \autoref{fig:SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
+% We see an embedded example of a live interpreter of the SPL language.
+% At the bottom of the example snippet we can also see how the snippet was specified, by naming the example class and method (\st{SPLCaseStudyExamples >> #print3plus4}), specifying that we do not want to see the code of the example (\st{noCode=true}), and finally which custom view of the example we would like to see instead (\st{previewShow=#gtStateFor:}).
+
+% \begin{figure}[h]
+% \includegraphics[width=\columnwidth]{book2-SPL}
+% \caption{Implementing a simple programming language.}
+% \label{fig:SPL}
+% \end{figure}
 % \st{SPLCaseStudyExamples >> #print3plus4 | noCode=true | previewShow=#gtStateFor:}
 
 Examples can also be used effectively to explain algorithms.
 In \autoref{fig:Treemap} we see a notebook page that explains how a TreeMap layout algorithm works with the help of live examples.
+\todo{Fix the example to show how the treemap switches orientation}
 In the figure we are diving into a node of the TreeMap to explore how it is specified.
 
 \begin{figure}[h]
@@ -398,7 +375,7 @@ In the figure we are diving into a node of the TreeMap to explore how it is spec
   \label{fig:Treemap}
 \end{figure}
 
-Finally, \autoref{fig:Patterns} shows how examples can be used within notebook pages that explain the moldable development process in terms of a number of patterns~\cite{Nier24a}.
+Finally, \autoref{fig:Patterns} shows how examples can be used within notebook pages that explain the moldable development process itself in terms of a number of patterns~\cite{Nier24a}.
 The \emph{Moldable Development patterns} page contains a live embedded map (an example) that allows you to navigate to pages describing the individual patterns.
 These pages, such as \emph{Custom Search}, in turn contain other live examples to illustrate the patterns.
 
@@ -443,21 +420,10 @@ Modern notebook systems such as Jupyter\footnote{\url{https://jupyter.org}}, MAT
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
 
-% \todo{Somewhere cite moldable exceptions \cite{Chis24a}?}
-
-\todo{
-Summary:\\
-- having tests be factories for examples is a tiny, but groundbreaking enhancement\\
-- EDD enhances TDD by making examples rather than tests the focus in the development process\\
-- by enhancing examples with lightweight, custom tools, they help users answer all kinds of analysis questions\\
-- by embedding examples in live documentation, they make software systems explainable.
-}
-
-\todo{
-Concluding points:\\
-- ...
-}
-
+Having tests be factories for examples is a tiny, but potentially groundbreaking enhancement.
+EDD enhances TDD by making examples rather than tests be the focus of the development process.
+By enhancing examples with lightweight, custom tools, they help users answer all kinds of analysis questions.
+By embedding examples in live documentation, they make software systems explainable.
 
 %\begin{acks}
 %\end{acks}
