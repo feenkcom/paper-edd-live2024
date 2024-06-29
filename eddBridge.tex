@@ -171,72 +171,111 @@ and
 	\item the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
 \end{inparaenum}
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
-\subfigure[xxx]{
+\subfigure[Prototyping a raw Price object.]{
   \includegraphics[width=\columnwidth]{edd1-ConcretePrice100Euros}
   \label{fig:exampleCreationA}
   }\qquad
-\subfigure[xxx]{
+\subfigure[Prototyping a factory method.]{
   \includegraphics[width=\columnwidth]{edd2-PrototypingAsPrice}
   \label{fig:exampleCreationB}
   }\qquad
-\subfigure[xxx]{
+\subfigure[Extracting a factory method.]{
   \includegraphics[width=\columnwidth]{edd3-ExtractAsPrice}
   \label{fig:exampleCreationC}
   }\qquad
-\subfigure[xxx]{
+\subfigure[Rewriting the initial snippet.]{
   \includegraphics[width=\columnwidth]{edd4-MoneyAsPrice}
-  \label{fig:exampleCreationC}
+  \label{fig:exampleCreationD}
   }\qquad
-  \caption{Building an example.}
+  \caption{Incrementally building an example.}
   \label{fig:exampleCreation}
 \end{figure}
 
-Let's see how this can work with a small, running example.
-Suppose we already have a library of classes implementing amounts of \st{Money} in various currencies.
-Now we would like to implement \emph{prices} for goods, where a \st{Price} may be a concrete, fixed price, or a \emph{discounted} price, where the discount may be a fixed value or a percentage.
+Let's see how this can work with a small, running example in Glamorous Toolkit\footnote{\url{https://gtoolkit.com}} (GT), an open-source moldable development environment implemented on top of the Pharo\footnote{\url{https://pharo.org}} Smalltalk  platform.
 
-\here
+Suppose we have an existing library of classes implementing amounts of \st{Money} in various currencies, such as \st{100 euros} or \st{10 usd}.
+We would now like to implement \emph{prices} for goods, where a \st{Price} may be a concrete, fixed price, or a \emph{discounted} price, where the discount may be a fixed value or a percentage.
 
-\todo{Introduce GT}
+With TDD we would probably start by specifying a test method in a dedicated \st{TestPrice} class that sets up a fixture for a concrete fixed price of, say, \st{100 euros}, and then asserts something about it.
+With examples, we \emph{could do pretty much the same}, creating an example method in a \st{PriceExamples} class that creates the same fixture, asserts something, \emph{and returns that example object}.
+But how would we create an instance of the (not yet defined) \st{Price} class?
+What would we like to assert about it?
+What should the API of the \st{Price} class look like?
 
-Glamorous Toolkit (GT)\footnote{\url{https://gtoolkit.com}} ...
+It is true that TDD forces us to ask such questions, so in this way it \emph{drives} the design process.
+\emph{However}, TDD does not otherwise help us in answering these questions.
+We are forced to ``guess first'' and try to specify an interface before we can implement anything.
 
-In \autoref{fig:exampleCreation} ...
+Instead, with EDD, we can exploit the fact that we have examples to iterative and incrementally specify the test (example method) and \emph{prototype} the object it tests.
+In this way, EDD helps us to make small steps towards both specifying the test example method and implementing the code that will make the test (example) green.
 
+We can see this illustrated in \autoref{fig:exampleCreation}.
+We start (\autoref{fig:exampleCreationA}, leftmost pane) by writing a snippet that creates a new \lst{ConcretePrice} object with \st{100 euros} as its \st{money} value.
+With the help of \emph{fixit dialogues} (not shown) we create the new class with a \st{money} slot (instance variable) and setter.
+We can then inspect the new, raw \st{ConcretePrice} (\autoref{fig:exampleCreationA}, middle pane), showing that its \st{money} slot is properly initialized.
+We can click on that slot and inspect its value as well (rightmost pane).
 
-In \autoref{fig:exampleExtraction} ...
+At this point we realize that it would be nice to have a factory method to create a \st{Price} from a \st{Money} instance.
+In the context of the live \st{100 euro} \st{Money} object (\autoref{fig:exampleCreationB} bottom of left pane) we prototype the code to create a price from this instance, namely
+\begin{code}
+ConcretePrice new money: self; yourself
+\end{code}
+(note that \st{self} is bound to the live object we are inspecting).
+Evaluating this snippet and inspect the result (\autoref{fig:exampleCreationB}, right pane) shows that this gives us the \st{ConcretePrice} object that we expect.
 
+Now that we have prototyped the factory code, we can extract it as an extension method of the \st{Money} class called \st{asPrice} using an \emph{Extract method} refactoring.
+We see the refactored code (\autoref{fig:exampleCreationC}, left pane) as a ``code bubble''~\cite{Brag10a} by expanding \st{asPrice}.
+We also see that the refactored snippet, namely \st{self asPrice}, still yields the result  we want (right pane).
 
-\todo{Step through an EDD scenario as we did in the EDD blog.
-Use the Prices use case?}
-% https://lepiter.io/feenk/example-driven-development-ekmic0u0o8swpblzkcdzy608s/
+Now we can go back to our original snippet (\autoref{fig:exampleCreationD}, left pane) and rewrite it as
+\begin{code}
+100 euros asPrice.
+\end{code}
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
-\subfigure[xxx]{
+\subfigure[Extracting an example method.]{
   \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
+  \label{fig:exampleExtractionA}
   }\qquad
-\subfigure[xxx]{
+\subfigure[The extracted example method.]{
   \includegraphics[width=\columnwidth]{edd6-PriceExample}
+  \label{fig:exampleExtractionB}
   }\qquad
-\subfigure[xxx]{
+\subfigure[Prototyping an assertion.]{
   \includegraphics[width=\columnwidth]{edd7-FailedTest}
+  \label{fig:exampleExtractionC}
   }\qquad
 %\subfigure[xxx]{
 %  \includegraphics[width=\columnwidth]{edd8-ImplementingEquals}
 %  }\qquad
-\subfigure[xxx]{
+\subfigure[Adding the assertion to the example method.]{
   \includegraphics[width=\columnwidth]{edd9ExampleWithAssertions}
+  \label{fig:exampleExtractionD}
   }\qquad
   \caption{Extracting an example method.}
   \label{fig:exampleExtraction}
 \end{figure}
 
+Now we have a nice snippet that creates an example that interests us.
+In \autoref{fig:exampleExtraction} \autoref{fig:exampleExtractionA} we again apply an \emph{Extract method} refactoring, this time to create a new \st{PriceExamples} class with a \st{hundredEuros} example  method.
+It is simply a method with a \st{<gtExample>} annotation (analogous to Java method annotations) that flags it as an example method, and which returns the object of interest (\autoref{fig:exampleExtractionB}, left pane with code bubble).
+Our example method still does not test anything, so let's prototype that too.
+We would expect our \st{hundredEuros} example to be equal to another instance that is created in the same way.
+Within the context of the live example (\autoref{fig:exampleExtractionC}, left pane) we prototype the assertion that this example object (\ie \st{self}) is equal to another object created the same way.
+Unfortunately this fails (right pane) because our new \st{ConcretePrice} object has not implemented equality, so equality defaults to object identity.
+We implement the missing method, and now update our example method (\autoref{fig:exampleExtractionD} left pane) with the new assertion.
+
+If we evaluate this example method, it is not only green (left), but also returns an example we can explore (right).
 
 % ============================================================
 \section{Moldable Examples}\label{sec:moldable}
+
+When we inspect our \st{hundredEuro} example (\autoref{fig:exampleExtraction}), instead of the original ``raw'' inspector view we see a new \emph{Money} view showing the value of the concrete price.
+How did this happen?
+Actually there is a step missing that we will now explain.
 
 \emph{Moldable development} is an approach to constructing \emph{explainable software systems} by augmenting the objects of the software system with dozens of tiny analysis tools that can answer questions about the system.
 It can be understood as a refinement of EDD in which objects (examples) are enhanced with custom tools during the development process.
@@ -267,30 +306,26 @@ As we elaborate the examples in the EDD process, we mold them with custom tools 
 The output of the process is then a molded example that not only checks assertions about its expected behavior, but also exposes that behavior through custom tools.
 
 Let's see how this works.
-\todo{Go back to the Price examples from the last section, and see how custom tools enhance the examples}
-
-\autoref{fig:ConcretePrice}
-\autoref{fig:DiscountedPrice}
-
+In \autoref{fig:ConcretePrice} we see another demo version of our \st{ConcretePrice} class called \st{GtDConcretePrice}.
+It has a custom view called \emph{Overview} (left pane) showing that the price is just a fixed amount of money.
+In the right pane we see the code that implements this custom view.
+The details of the implementation are not important here, but please note that this method consist of just a dozen lines or so of boilerplate code.
+Most custom views in GT are short, and the average size of these methods is about a dozen lines of code.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{md1-ConcretePrice}
-  \caption{xxx.}
+  \caption{A ConcretePrice object with the code of a custom view.}
   \label{fig:ConcretePrice}
 \end{figure}
 
-
-
+In \autoref{fig:DiscountedPrice} we see a more complex example of a price that has been discounted twice, first by a fixed amount, and then by a percentage.
+In this case, the \emph{Overview} explains how the price has been calculated as a composition of discounts.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{md2-DiscountedPrice}
-  \caption{xxx.}
+  \caption{A DiscountedPrice with a custom view showing how it is composed.}
   \label{fig:DiscountedPrice}
 \end{figure}
-
-
-
-
 
 % ============================================================
 \section{Explainable Systems using Examples}\label{sec:explainable}
@@ -305,51 +340,39 @@ This simple feature enables the creation of various kinds of live documentation,
 
 Let's see a few examples from the GT book, the knowledge base that comes bundled with the GT download.
 
-In \autoref{fig:Memory} we see pages of a tutorial explaining how to build a graphical user interface using examples of a ``Memory'' game.
-\todo{explain the figure}
-
+In \autoref{fig:Memory} we see an extract of tutorial pages explaining how to build a graphical user interface using examples of a ``Memory'' game.\footnote{\url{https://en.wikipedia.org/wiki/Concentration_(card_game)}}
+The page contains a live, embedded example of a partially played Memory game with two cards turned over.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book1-Memory}
-  \caption{xxx.}
+  \caption{Part of a tutorial in implementing a ``Memory'' game.}
   \label{fig:Memory}
 \end{figure}
 
-
-
-
 \autoref{fig:SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
-\todo{explain the figure}
-
-
+We see an embedded example of a live interpreter of the SPL language.
+At the bottom of the example snippet we can also see how the snippet was specified, by naming the example class and method (\st{SPLCaseStudyExamples >> #print3plus4}), specifying that we do not want to see the code of the example (\st{noCode=true}), and finally which custom view of the example we would like to see instead (\st{previewShow=#gtStateFor:}).
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book2-SPL}
-  \caption{xxx.}
+  \caption{Implementing a simple programming language.}
   \label{fig:SPL}
 \end{figure}
-
-\st{SPLCaseStudyExamples >> #print3plus4 | noCode=true | previewShow=#gtStateFor:}
-
+% \st{SPLCaseStudyExamples >> #print3plus4 | noCode=true | previewShow=#gtStateFor:}
 
 Examples can also be used effectively to explain algorithms.
-In \autoref{fig:Treemap} we see a notebook page that explains how a treemap layout algorithm works with the help of live examples.
-
-
+In \autoref{fig:Treemap} we see a notebook page that explains how a TreeMap layout algorithm works with the help of live examples.
+In the figure we are diving into a node of the TreeMap to explore how it is specified.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book3-Treemap}
-  \caption{xxx.}
+  \caption{Explaining a TreeMap algorithm.}
   \label{fig:Treemap}
 \end{figure}
 
-
-
-
-\autoref{fig:Patterns} shows how examples can be used within notebook pages that explain the moldable development process in terms of a number of patterns.
-\todo{cite the patterns paper}
-\todo{explain the figure}
-
+Finally, \autoref{fig:Patterns} shows how examples can be used within notebook pages that explain the moldable development process in terms of a number of patterns~\cite{Nier24a}.
+The \emph{Moldable Development patterns} page contains a live embedded map (an example) that allows you to navigate to pages describing the individual patterns.
+These pages, such as \emph{Custom Search}, in turn contain other live examples to illustrate the patterns.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book4-MDPatterns}
@@ -357,19 +380,21 @@ In \autoref{fig:Treemap} we see a notebook page that explains how a treemap layo
   \label{fig:Patterns}
 \end{figure}
 
-
-
-
 All of these illustrations show not only how example methods can be used productively to produce live documentation, but that by applying moldable development principles, the live examples can be easily enhanced with lightweight, custom tools that serve to make the examples, and the systems they are part of, truly explainable.
 
-\todo{statistics on examples, snippets, pages etc.}
-
+%\todo{Should we list statistics on examples, snippets, pages etc.?\\
+%There are 10804 example methods averaging 13.068 LoC
+%compared with
+%24552 test methods averaging 9.58 LoC.\\
+%The GT Book has 456 pages, of which 97 containing example snippets, for a total of 332 example snippets.
+%Two pages have 22 examples.
+%}
 
 % ============================================================
 \section{Related work}\label{sec:related}
 
-\todo{Add something on Shri's Examplar paper}
-% https://cs.brown.edu/~sk/Publications/Papers/Published/wk-examplar/
+%\todo{Add something on Shri's Executable Examples paper? Wren19a}
+%% https://cs.brown.edu/~sk/Publications/Papers/Published/wk-examplar/
 
 The \emph{Test Data Builder} pattern~\cite{Free09a} introduces factory methods for test fixtures, also potentially reducing code duplication in tests, but the resulting objects are only intended as inputs for tests, not their outputs.
 The resulting examples are not accessible as the output of a green test.
@@ -381,9 +406,6 @@ The usage of these examples, however, is restricted to the context of the busine
 Modern testing frameworks such as pytest~\cite{Okke22a}, allow tests to be parameterized by fixtures specified as separate methods.
 Here too, however, fixtures are only seen as inputs to tests, not as outputs.
 
-\todo{Something about notebooks and live examples ...
-The idea of notebooks with embedded examples is not new, but combining them with tests and lightweight, custom tools to create narratives is new.}
-
 Bush was the first to dream of a computerized ``memex'' of stored knowledge~\cite{Bush45a}, through which a user could trace an associative ``trail'' of interconnected text and multimedia resources.
 The memex vision inspired Engelbart's NLS~\cite{Enge68a}, the first system to demonstrate human interaction with a computer mouse, windows, and hypertext features.
 Knuth first pioneered the implementation of a computational notebook, called WEB, to support ``literate programming'' through the combination of text, graphics, and live code~\cite{Knut97a}.
@@ -393,7 +415,7 @@ Modern notebook systems such as Jupyter\footnote{\url{https://jupyter.org}}, MAT
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
 
-\todo{Somewhere refer to MD patterns \cite{Nier24a} and moldable exceptions \cite{Chis24a}?}
+% \todo{Somewhere cite moldable exceptions \cite{Chis24a}?}
 
 \todo{
 Summary:\\
