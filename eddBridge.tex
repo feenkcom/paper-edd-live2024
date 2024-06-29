@@ -285,7 +285,7 @@ It can be understood as a refinement of EDD in which objects (examples) are enha
 
 Moldable development is made possible with the help of \emph{moldable tools}~\cite{Chis17a}, such as code browsers, debuggers, and object inspectors, that can adapt themselves to the run-time context of an application to enable these analysis tools.
 % Chis17a Moldable Tools for Object-oriented Development
-For example, consider the screenshot of the Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} in figure \autoref{fig:ludoViews}.
+For example, consider the screenshot of a Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} game in figure \autoref{fig:ludoViews}.
 At the left we see in an object inspector a GUI \emph{Board} view of a running instance of the game that has terminated with player B winning.
 In the middle we see a \emph{Moves} view of the same instance, showing us all the past moves leading to the concluding state of the game.
 Finally, at the right we inspect a particular move, showing us how the game state was updated in move \#109.
@@ -303,15 +303,15 @@ Similarly the move object is an instance of the \st{GtLudoMove} class, which has
 
 Two other common types of custom tools are \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
 
-Examples are both the input and output of moldable development.
-Typically we start with a ``raw'', unenhanced example, such as we see in \autoref{fig:exampleCreationB}: the \st{aConcretePrice} inspector view shows just a basic ``raw'' view of the instance state of the example.
+Example methods serve as both the input and output of moldable development.
+Typically we start with a ``raw'', unenhanced example, such as we see in \autoref{fig:exampleCreationB}: the \st{ConcretePrice} inspector view shows just a basic ``raw'' view of the instance state of the example.
 As we elaborate the examples in the EDD process, we mold them with custom tools that validate the requirements expressed by the examples.
 The output of the process is then a molded example that not only checks assertions about its expected behavior, but also exposes that behavior through custom tools.
 
-In \autoref{fig:ConcretePrice} we see another demo version of our \st{ConcretePrice} class called \st{GtDConcretePrice}.
+In \autoref{fig:ConcretePrice} we see another demo version of our \lst{ConcretePrice} class called \st{GtDConcretePrice}.
 It has a custom view called \emph{Overview} (left pane) showing that the price is just a fixed amount of money.
 In the right pane we see the code that implements this custom view.
-The details of the implementation are not important here, but please note that this method consist of just a dozen lines or so of boilerplate code.
+The details of the implementation are not important here, but please note that this method consists of just a dozen lines or so of boilerplate code.
 Most custom views in GT are short, and the average size of these methods is about a dozen lines.
 
 \begin{figure}[h]
@@ -398,6 +398,12 @@ All of these illustrations show not only how example methods can be used product
 % ============================================================
 \section{Related work}\label{sec:related}
 
+Bush was the first to dream of a computerized ``memex'' of stored knowledge~\cite{Bush45a}, through which a user could trace an associative ``trail'' of interconnected text and multimedia resources.
+The memex vision inspired Engelbart's NLS~\cite{Enge68a}, the first system to demonstrate human interaction with a computer mouse, windows, and hypertext features.
+Knuth first pioneered the implementation of a computational notebook, called WEB, to support ``literate programming'' through the combination of text, graphics, and live code~\cite{Knut97a}.
+
+Modern notebook systems such as Jupyter\footnote{\url{https://jupyter.org}}, MATLAB Live Scripts\footnote{\url{https://www.mathworks.com/}} and Wolfram Notebooks\footnote{\url{https://www.wolfram.com/notebooks/}} all offer the ability to embed live instances of classes within notebook pages, but these live examples are neither integrated with unit testing frameworks, not do they support custom tooling with the help of moldable tools to tailor the user experience.
+
 %\todo{Add something on Shri's Executable Examples paper? Wren19a}
 %% https://cs.brown.edu/~sk/Publications/Papers/Published/wk-examplar/
 
@@ -410,12 +416,6 @@ The usage of these examples, however, is restricted to the context of the busine
 
 Modern testing frameworks such as pytest~\cite{Okke22a}, allow tests to be parameterized by fixtures specified as separate methods.
 Here too, however, fixtures are only seen as inputs to tests, not as outputs.
-
-Bush was the first to dream of a computerized ``memex'' of stored knowledge~\cite{Bush45a}, through which a user could trace an associative ``trail'' of interconnected text and multimedia resources.
-The memex vision inspired Engelbart's NLS~\cite{Enge68a}, the first system to demonstrate human interaction with a computer mouse, windows, and hypertext features.
-Knuth first pioneered the implementation of a computational notebook, called WEB, to support ``literate programming'' through the combination of text, graphics, and live code~\cite{Knut97a}.
-
-Modern notebook systems such as Jupyter\footnote{\url{https://jupyter.org}}, MATLAB Live Scripts\footnote{\url{https://www.mathworks.com/}} and Wolfram Notebooks\footnote{\url{https://www.wolfram.com/notebooks/}} all offer the ability to embed live instances of classes within notebook pages, but these live examples are neither integrated with unit testing frameworks, not do they support custom tooling with the help of moldable tools to tailor the user experience.
 
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
