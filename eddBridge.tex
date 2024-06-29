@@ -85,8 +85,9 @@ An example \emph{is} causally connected to the system, is always live and tested
 Although technically examples constitute just a tiny modification to test methods, their impact is potentially ground breaking.
 We show
 \begin{inparaenum}[(i)]
-	\item how EDD enriches TDD with live programming,
-	\item how examples can be molded with tiny tools to answer analysis questions, and	\item how examples can be embedded in live documentation to make a system explainable.
+	\item how Example-Driven Development (EDD) enriches TDD with live programming,
+	\item how examples can be \emph{molded} with tiny tools to answer analysis questions, and
+    \item how examples can be embedded within live documentation to make a system explainable.
 \end{inparaenum}
 \end{abstract}
 
@@ -103,7 +104,7 @@ We show
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
 
-Unit tests, as originally introduced by Beck \cite{Beck94c}, exercise objects, known as \emph{fixtures}, and evaluate assertions over these objects.
+Unit tests, as originally introduced by Beck \cite{Beck94c}, exercise objects, referred to as \emph{fixtures}, and evaluate assertions over these objects.
 % Beck94c Simple Smalltalk Testing: With Patterns
 % See https://en.m.wikipedia.org/wiki/SUnit
 % https://web.archive.org/web/20150315073817/http://www.xprogramming.com/testfram.htm
@@ -122,12 +123,12 @@ JExample\footnote{\url{https://scg.unibe.ch/research/jexample}} extends JUnit 4,
 Interestingly, refactoring tests as examples establishes a partial order amongst test methods.
 The impact of this is that
 \begin{inparaenum}[(i)]
-	\item code duplication is reduced as common preambles to complex tests are refactored as shared examples, and
+	\item code duplication is reduced since common preambles to complex tests are refactored as shared examples, and
 	\item defect localization is improved since fewer tests will fail~\cite{Kuhn08a}.
 \end{inparaenum}
 % Kuhn08a JExample: Exploiting Dependencies Between Tests to Improve Defect Localization
 H{\"a}nsenberger showed that tests in the wild often contain much duplicated code.
-By performing dynamic analysis of tests, one can largely automate the process of migrating classical unit tests to examples~\cite{Haen08b,Haen09a}.
+By performing dynamic analysis on tests, one can largely automate the process of migrating classical unit tests to examples~\cite{Haen08b,Haen09a}.
 % Haen08b Using Dynamic Analysis for API Migration (PCODA)
 % Haen09a Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc)
 
@@ -147,10 +148,10 @@ A key motivation for integrating unit tests into mainstream software development
 Test-Driven Development (TDD)~\cite{Beck03a} offers a way not only to ensure that tests are produced in tandem with the implementation of a software system, but importantly to exploit the potential for tests to serve as requirements that can drive the design and implementation process.
 % Beck03a Test Driven Development: By Example
 
-Ignoring ongoing ideological debates over the pros and cons of TDD and other Agile practices, we can observe the following issues with TDD.
+Ignoring ongoing ideological debates over the pros and cons of TDD and other Agile practices, we can observe the following issues with TDD:
 \begin{inparaenum}[(i)]
 	\item TDD advocates that one should always start development by writing a test first.
-But how do you know how to express what to test?
+But how do you know how to express what you want to test?
 In practice, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.
 Of course, this is how tests ``drive'' development, but could there be an easier way to get to the test code that you need to write?
 	\item TDD then recommends that you write just enough code to make the test pass.
@@ -165,10 +166,10 @@ How could we make it useful?
 It is similar to TDD, but can differ in important ways by exploiting opportunities raised by live programming.
 In short,
 \begin{inparaenum}[(i)]
-	\item instead of starting by writing a test, we start by inspecting a bare-bones example, and incrementally writing code that will become a test scenario to produce an interesting example,
+	\item instead of starting by writing a test, we start by inspecting a bare-bones example, and incrementally write code that will become a test scenario to produce an interesting example,
 	\item instead of writing code to make a test pass, we iteratively and incrementally grow the example, and extract assertions that express what is interesting about the example,
 and
-	\item the green test returns the example that we can inspect, interact with, and, as we shall see, embed in live documentation.
+	\item a green test returns an example that we can inspect, interact with, and, as we shall see, embed into live documentation.
 \end{inparaenum}
 
 \begin{figure}[t]
@@ -198,8 +199,8 @@ Let's see how this can work with a small, running example in Glamorous Toolkit\f
 Suppose we have an existing library of classes implementing amounts of \st{Money} in various currencies, such as \st{100 euros} or \st{10 usd}.
 We would now like to implement \emph{prices} for goods, where a \st{Price} may be a concrete, fixed price, or a \emph{discounted} price, where the discount may be a fixed value or a percentage.
 
-With TDD we would probably start by specifying a test method in a dedicated \st{TestPrice} class that sets up a fixture for a concrete fixed price of, say, \st{100 euros}, and then asserts something about it.
-With examples, we \emph{could do pretty much the same}, creating an example method in a \st{PriceExamples} class that creates the same fixture, asserts something, \emph{and returns that example object}.
+With TDD we would probably start by specifying a test method within a dedicated \st{TestPrice} class that sets up a fixture for a concrete fixed price of, say, \st{100 euros}, and then asserts something about it.
+With examples, \emph{we could do pretty much the same}, creating an example method in a \st{PriceExamples} class that creates the same fixture, asserts something, \emph{and returns that example object}.
 But how would we create an instance of the (not yet defined) \st{Price} class?
 What would we like to assert about it?
 What should the API of the \st{Price} class look like?
@@ -208,22 +209,22 @@ It is true that TDD forces us to ask such questions, so in this way it \emph{dri
 \emph{However}, TDD does not otherwise help us in answering these questions.
 We are forced to ``guess first'' and try to specify an interface before we can implement anything.
 
-Instead, with EDD, we can exploit the fact that we have examples to iterative and incrementally specify the test (example method) and \emph{prototype} the object it tests.
+Instead, with EDD, we can exploit the fact that we have examples to iterative and incrementally specify the test (\ie the example method) and \emph{prototype} the object it tests.
 In this way, EDD helps us to make small steps towards both specifying the test example method and implementing the code that will make the test (example) green.
 
 We can see this illustrated in \autoref{fig:exampleCreation}.
 We start (\autoref{fig:exampleCreationA}, leftmost pane) by writing a snippet that creates a new \lst{ConcretePrice} object with \st{100 euros} as its \st{money} value.
-With the help of \emph{fixit dialogues} (not shown) we create the new class with a \st{money} slot (instance variable) and setter.
+With the help of \emph{fixit dialogues} (not shown) we create the new class with a \st{money} slot (instance variable) and setter method.
 We can then inspect the new, raw \st{ConcretePrice} (\autoref{fig:exampleCreationA}, middle pane), showing that its \st{money} slot is properly initialized.
-We can click on that slot and inspect its value as well (rightmost pane).
+We can also click on that slot, and inspect its value as well (rightmost pane).
 
 At this point we realize that it would be nice to have a factory method to create a \st{Price} from a \st{Money} instance.
-In the context of the live \st{100 euro} \st{Money} object (\autoref{fig:exampleCreationB} bottom of left pane) we prototype the code to create a price from this instance, namely
+In the context of the live \st{100 euro} \st{Money} object (\autoref{fig:exampleCreationB} bottom of left pane) we prototype the code to create a price from this instance, namely:
 \begin{code}
 ConcretePrice new money: self; yourself
 \end{code}
-(note that \st{self} is bound to the live object we are inspecting).
-Evaluating this snippet and inspect the result (\autoref{fig:exampleCreationB}, right pane) shows that this gives us the \st{ConcretePrice} object that we expect.
+(Note that \st{self} is bound to the live object we are inspecting).
+Evaluating this snippet and inspecting the result (\autoref{fig:exampleCreationB}, right pane) shows that this gives us the \st{ConcretePrice} object that we expect.
 
 Now that we have prototyped the factory code, we can extract it as an extension method of the \st{Money} class called \st{asPrice} using an \emph{Extract method} refactoring.
 We see the refactored code (\autoref{fig:exampleCreationC}, left pane) as a ``code bubble''~\cite{Brag10a} by expanding \st{asPrice}.
