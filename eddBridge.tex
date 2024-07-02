@@ -80,12 +80,12 @@
 Software systems should be \emph{explainable}, that is, they should help us to answer questions while exploring, developing or using them.
 Textual documentation is a very weak form of explanation, since it is not causally connected to the code, so easily gets out of date.
 \emph{Tests}, on the other hand, are causally connected to code, but they are also a weak form of explanation.
-Although some tests encode interesting scenarios that answer certain questions about how the system works, most tests tend to be uninteresting.
+Although some tests encode interesting scenarios that answer certain questions about how the system works, most tests tend to be uninteresting. \ac{I would not say that tests are uninteresting, but that usually usage is limited to running the test to see if it passes, or reading the code of the test}
 
 \emph{Examples} are tests that are also factories for interesting system entities.
 Instead of simply succeeding or failing, an example returns the object under test so that it can be inspected, or reused to compose further tests.
 An example \emph{is} causally connected to the system, is always live and tested, and can be embedded into live documentation.
-Although technically examples constitute just a tiny modification to test methods, their impact is potentially ground-breaking.
+Although technically examples constitute just a tiny \ac{not sure we need to say necessarily "tiny"} modification to test methods, their impact is potentially ground-breaking.
 We show
 \begin{inparaenum}[(i)]
 	\item how Example-Driven Development (EDD) enriches TDD with live programming,
@@ -336,6 +336,8 @@ In this case, the \emph{Overview} explains how the price has been calculated as 
 \section{Explainable Systems using Examples}\label{sec:explainable}
 
 %\todo{Add something about creating narratives -- the custom views allow you to create both fixed narratives as notebook pages, and dynamic narratives by navigating to new views}
+
+\ac{Feels like we should show also a page describing prices}
 
 Perhaps the most compelling use of examples is within live documentation.
 GT includes support for knowledge bases consisting of linked notebook pages that are composed of various kinds of snippets: formatted test, images, code in various programming languages, and live examples.
