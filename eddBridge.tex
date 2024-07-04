@@ -155,13 +155,14 @@ Ignoring ongoing ideological debates over the pros and cons of TDD and other Agi
 \begin{inparaenum}[(i)]
 	\item TDD advocates that one should always start development by writing a test first.
 But how do you know how to express what you want to test?
-In practice, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.
+\del{In practice, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.}
+\tg{Sometimes you know upfront how to create the setup and what the desired outcome is. But oftentimes you do not know upfront what the right assertion should be. In this situation you have to ``guess first'' to write the assertion. And even when you do know the assertion upfront, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.}
 Of course, this is how tests ``drive'' development, but could there be an easier way to get to the test code that you need to write?
 	\item TDD then recommends that you write just enough code to make the test pass.
 But how do you know where to start coding?
 Again you have to ``guess first'' to figure out where to begin coding.
 	\item Once you have a green test, what can you do with it except read the code?
-A red test is useful, as long as it brings you to a debugger that lets you explore why the test has failed, but a green test is uninteresting and useless.
+A red test is useful, as long as it brings you to a debugger that lets you explore why the test has failed, but a green test is uninteresting \del{and useless}.
 How could we make it useful?
 \end{inparaenum}
 
@@ -192,17 +193,23 @@ We are forced to ``guess first'' and try to specify an interface before we can i
 
 Instead, with EDD, we can exploit the fact that we have examples to iterative and incrementally specify the test (\ie the example method) and \emph{prototype} the object it tests.
 In this way, EDD helps us to make small steps towards both specifying the test example method and implementing the code that will make the test (example) green.
-
+We can see this illustrated in \autoref{fig:exampleCreationA} where we start (leftmost pane) by writing a snippet that creates a new \lst{ConcretePrice} object with \st{100 euros} as its \st{money} value.
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd1-ConcretePrice100Euros}
 	\caption{Prototyping a raw Price object.}
   \label{fig:exampleCreationA}
 \end{figure}
 
-We can see this illustrated in \autoref{fig:exampleCreationA} where we start (leftmost pane) by writing a snippet that creates a new \lst{ConcretePrice} object with \st{100 euros} as its \st{money} value.
+
 With the help of \emph{fixit dialogues} (not shown) we create the new class with a \st{money} slot (instance variable) and setter method.
 We can then inspect the new, raw \st{ConcretePrice} (middle pane), showing that its \st{money} slot is properly initialized.
-We can also click on that slot, and inspect its value (rightmost pane).
+We can also inspect the slot's value (rightmost pane).
+
+At this point we realize that it would be nice to have a factory method to create a \st{Price} from a \st{Money} instance.
+In the context of the live \st{100 euro} \st{Money} object (\autoref{fig:exampleCreationB} bottom of left pane) we prototype the code to create a price from this instance, namely:
+\begin{code}
+ConcretePrice new money: self; yourself.
+\end{code}
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd2-PrototypingAsPrice}
@@ -210,13 +217,14 @@ We can also click on that slot, and inspect its value (rightmost pane).
   \label{fig:exampleCreationB}
 \end{figure}
 
-At this point we realize that it would be nice to have a factory method to create a \st{Price} from a \st{Money} instance.
-In the context of the live \st{100 euro} \st{Money} object (\autoref{fig:exampleCreationB} bottom of left pane) we prototype the code to create a price from this instance, namely:
-\begin{code}
-ConcretePrice new money: self; yourself.
-\end{code}
 Note that \st{self} is bound to the live object we are inspecting.
 Evaluating this snippet and inspecting the result (right pane) gives us the \st{ConcretePrice} object that we expect.
+
+
+
+Now that we have prototyped the factory code, we can extract it as an extension method of the \st{Money} class called \st{asPrice} using an \emph{Extract method} refactoring.
+We see the refactored code (\autoref{fig:exampleCreationC}, left pane) as a ``code bubble''~\cite{Brag10a} by expanding \st{asPrice}.
+We also see that the refactored snippet still yields the result we want (right pane).
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd3-ExtractAsPrice}
@@ -224,15 +232,6 @@ Evaluating this snippet and inspecting the result (right pane) gives us the \st{
   \label{fig:exampleCreationC}
 \end{figure}
 
-Now that we have prototyped the factory code, we can extract it as an extension method of the \st{Money} class called \st{asPrice} using an \emph{Extract method} refactoring.
-We see the refactored code (\autoref{fig:exampleCreationC}, left pane) as a ``code bubble''~\cite{Brag10a} by expanding \st{asPrice}.
-We also see that the refactored snippet still yields the result we want (right pane).
-
-\begin{figure}[h]
-  \includegraphics[width=\columnwidth]{edd4-MoneyAsPrice}
-	\caption{Rewriting the initial snippet.}
-  \label{fig:exampleCreationD}
-\end{figure}
 
 Now we can go back to our original snippet (\autoref{fig:exampleCreationD}, left pane) and rewrite it as:
 \begin{code}
@@ -240,13 +239,25 @@ Now we can go back to our original snippet (\autoref{fig:exampleCreationD}, left
 \end{code}
 
 \begin{figure}[h]
+  \includegraphics[width=\columnwidth]{edd4-MoneyAsPrice}
+	\caption{Rewriting the initial snippet.}
+  \label{fig:exampleCreationD}
+\end{figure}
+
+
+Now we have a nice snippet that creates an example that interests us.
+In \autoref{fig:exampleExtractionA} we apply an \emph{Extract example} refactoring to create a new \st{PriceExamples} class with a \st{hundredEuros} example  method.
+It is simply a method with a \st{<gtExample>} annotation (analogous to Java method annotations) that flags it as an example method, and which returns the object of interest (\autoref{fig:exampleExtractionB}, left pane with code bubble).
+Our example method still does not test anything, so let's prototype that too.
+We would expect our \st{hundredEuros} example to be equal to another instance that is created in the same way.
+
+
+\begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
 	\caption{Extracting an example method.}
   \label{fig:exampleExtractionA}
 \end{figure}
 
-Now we have a nice snippet that creates an example that interests us.
-In \autoref{fig:exampleExtractionA} we apply an \emph{Extract example} refactoring to create a new \st{PriceExamples} class with a \st{hundredEuros} example  method.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd6-PriceExample}
@@ -254,18 +265,17 @@ In \autoref{fig:exampleExtractionA} we apply an \emph{Extract example} refactori
   \label{fig:exampleExtractionB}
 \end{figure}
 
-It is simply a method with a \st{<gtExample>} annotation (analogous to Java method annotations) that flags it as an example method, and which returns the object of interest (\autoref{fig:exampleExtractionB}, left pane with code bubble).
-Our example method still does not test anything, so let's prototype that too.
-We would expect our \st{hundredEuros} example to be equal to another instance that is created in the same way.
 
+Within the context of the live example (\autoref{fig:exampleExtractionC}, left pane) we prototype the assertion that this example object (\ie \st{self}) is equal to another object created the same way.
+Unfortunately this fails (right pane) because our new \st{ConcretePrice} object has not implemented equality, so equality defaults to object identity.
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd7-FailedTest}
 	\caption{Prototyping an assertion.}
   \label{fig:exampleExtractionC}
 \end{figure}
 
-Within the context of the live example (\autoref{fig:exampleExtractionC}, left pane) we prototype the assertion that this example object (\ie \st{self}) is equal to another object created the same way.
-Unfortunately this fails (right pane) because our new \st{ConcretePrice} object has not implemented equality, so equality defaults to object identity.
+We implement the missing method, and now update our example method (\autoref{fig:exampleExtractionD} left pane) with the new assertion.
+If we evaluate this example method, it is not only green (left), but also returns an example we can explore (right).
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd8ExampleWithAssertions}
@@ -273,8 +283,6 @@ Unfortunately this fails (right pane) because our new \st{ConcretePrice} object 
   \label{fig:exampleExtractionD}
 \end{figure}
 
-We implement the missing method, and now update our example method (\autoref{fig:exampleExtractionD} left pane) with the new assertion.
-If we evaluate this example method, it is not only green (left), but also returns an example we can explore (right).
 
 % ============================================================
 \section{Moldable Examples}\label{sec:moldable}
@@ -347,13 +355,15 @@ This simple feature enables the creation of various kinds of live documentation,
 
 Let's see a few examples from the GT book, the knowledge base that comes bundled with the GT download.
 
-In \autoref{fig:Memory} we see an extract of tutorial pages explaining how to build a graphical user interface using examples of a ``Memory'' game.\footnote{\url{https://en.wikipedia.org/wiki/Concentration_(card_game)}}
-The page contains a live, embedded example of a partially played Memory game with two cards turned over.
+\del{In \autoref{fig:Memory} we see an extract of tutorial pages explaining how to build a graphical user interface using examples of a ``Memory'' game.\footnote{\url{https://en.wikipedia.org/wiki/Concentration_(card_game)}} The page contains a live, embedded example of a partially played Memory game with two cards turned over.}
+
+\tg{In \autoref{fig:LudoBook} we see an extract of a page describing the Ludo game.
+The page section describes the rules of the game for new a live, embedded example of the initial move of a player. The picture is created by a view on a move object produced by the \st{moveInitial} example method from the \st{GtLudoRecordingGameExamples} class.}
 
 \begin{figure}[h]
-  \includegraphics[width=\columnwidth]{book1-Memory}
-  \caption{A ``Memory'' game tutorial.}
-  \label{fig:Memory}
+  \includegraphics[width=\columnwidth]{book1-ludo-move}
+  \caption{A ``Ludo'' documentation.}
+  \label{fig:LudoBook}
 \end{figure}
 
 % ON: Skip the SPL example to save space.
