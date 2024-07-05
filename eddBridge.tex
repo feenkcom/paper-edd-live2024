@@ -271,7 +271,7 @@ We implement the missing method, and now update our example method (\autoref{fig
 If we evaluate this example method, it is not only green (left), but also returns an example we can explore (right).
 
 \begin{figure}[h]
-  \includegraphics[width=\columnwidth]{edd8ExampleWithAssertions}
+  \includegraphics[width=\columnwidth]{edd8-ExampleWithAssertions}
 	\caption{Adding the assertion to the example method.}
   \label{fig:exampleExtractionD}
 \end{figure}
@@ -279,7 +279,7 @@ If we evaluate this example method, it is not only green (left), but also return
 % ============================================================
 \section{Moldable Examples}\label{sec:moldable}
 
-When we inspect our \st{hundredEuro} example (\autoref{fig:exampleExtractionD}), instead of the original ``raw'' inspector view we see a new \emph{Money} view showing the value of the concrete price.
+When we inspect our \st{hundredEuro} example (\autoref{fig:exampleExtractionD}), instead of the original ``raw'' inspector view we see a new \emph{Overview} view showing the value of the concrete price.
 How did this happen?
 Actually there is a step missing that we will now explain.
 
@@ -304,7 +304,7 @@ The object inspector recognizes that the Ludo game object is an instance of the 
 which has been extended with several custom views defined as annotated methods of that class.
 Similarly the move object is an instance of the \st{GtLudoMove} class, which has been extended with other views specific to moves.
 
-Two other common types of custom tools are \emph{custom actions} (\eg buttons), which perform a task and possible spawn another tool such as an inspector, a code editor or an external web browser, and \emph{custom searches}, which query the running object model and spawn a tool such as an object inspector on the result.
+Two other common types of custom tools are \emph{custom actions} (\eg buttons), which perform a task and possibly spawn another tool such as an inspector, a code editor or an external web browser, and \emph{custom searches}, which query the running object model, and spawn a tool such as an object inspector on the result.
 
 Example methods serve as both the input and output of moldable development.
 Typically we start with a ``raw'', unenhanced example, such as we see in \autoref{fig:exampleCreationB}: the \st{ConcretePrice} inspector view shows just a basic ``raw'' view of the instance state of the example.
@@ -340,15 +340,15 @@ In this case, the \emph{Overview} explains how the price has been calculated as 
 %\ac{Feels like we should show also a page describing prices}
 
 Perhaps the most compelling use of examples is within live documentation.
-GT includes support for knowledge bases consisting of linked notebook pages that are composed of various kinds of snippets: formatted test, images, code in various programming languages, and live examples.
-An example snippet identified an example method to be evaluated, and a view to be rendered when the notebook page is loaded.
+GT includes support for knowledge bases consisting of linked notebook pages that are composed of various kinds of snippets: formatted text, images, code in various programming languages, and live examples.
+An example snippet identifies an example method to be evaluated, and a view to be rendered when the notebook page is loaded.
 
 This simple feature enables the creation of various kinds of live documentation, such as live project diaries, interactive tutorials, and live API documentation.
 
 Let's see a few examples from the GT book, the knowledge base that comes bundled with the GT download.
 
 In \autoref{fig:LudoBook} we see an extract of a page describing the Ludo game.
-This section of the page describes the rules of the game for new a live, embedded example of the initial move of a player.
+This section of the page describes the rules of the game for a new, live, embedded example of the initial move of a player.
 What we see is a custom view of a move object produced by the \st{moveInitial} example method of the \st{GtLudoRecordingGameExamples} class.
 
 \begin{figure}[h]
@@ -359,7 +359,7 @@ What we see is a custom view of a move object produced by the \st{moveInitial} e
 
 Examples can also be used effectively to explain algorithms.
 In \autoref{fig:Treemap} we see a notebook page that explains how a squarified TreeMap layout algorithm works with the help of live examples.
-The embedded example shows not only the final layout (left), but by diving into it (right), we can see the decision steps taken to periodically switch orientation between horizontal and vertical tree map nodes to maintain a ``squarified'' appearance.
+The embedded example not only shows the final layout (left), but by diving into it (right), we can see the decision steps taken to periodically switch orientation between horizontal and vertical tree map nodes to maintain a ``squarified'' appearance.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book3-Treemap}
@@ -412,10 +412,11 @@ Here too, however, fixtures are only seen as inputs to tests, not as outputs.
 % ============================================================
 \section{Conclusion}\label{sec:conclusion}
 
-Having tests be factories for examples is a tiny, but potentially groundbreaking enhancement.
+Having tests be factories for examples is a small, but potentially groundbreaking enhancement.
 EDD enhances TDD by making examples rather than tests be the focus of the development process.
 By enhancing examples with lightweight, custom tools, they help users answer all kinds of analysis questions.
 By embedding examples in live documentation, they make software systems explainable.
+As a consequence, up-to-date documentation becomes merely a side-effect of applying EDD.
 
 %\begin{acks}
 %\end{acks}
