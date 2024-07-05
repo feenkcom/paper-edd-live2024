@@ -80,12 +80,12 @@
 Software systems should be \emph{explainable}, that is, they should help us to answer questions while exploring, developing or using them.
 Textual documentation is a very weak form of explanation, since it is not causally connected to the code, so easily gets out of date.
 \emph{Tests}, on the other hand, are causally connected to code, but they are also a weak form of explanation.
-Although some tests encode interesting scenarios that answer certain questions about how the system works, most tests tend to be uninteresting. \ac{I would not say that tests are uninteresting, but that usually usage is limited to running the test to see if it passes, or reading the code of the test}
+Although some tests encode interesting scenarios that answer certain questions about how the system works, most tests don't make interesting reading.
 
 \emph{Examples} are tests that are also factories for interesting system entities.
 Instead of simply succeeding or failing, an example returns the object under test so that it can be inspected, or reused to compose further tests.
 An example \emph{is} causally connected to the system, is always live and tested, and can be embedded into live documentation.
-Although technically examples constitute just a tiny \ac{not sure we need to say necessarily "tiny"} modification to test methods, their impact is potentially ground-breaking.
+Although technically examples constitute just a small change to the way that to test methods work, their impact is potentially ground-breaking.
 We show
 \begin{inparaenum}[(i)]
 	\item how Example-Driven Development (EDD) enriches TDD with live programming,
@@ -155,14 +155,15 @@ Ignoring ongoing ideological debates over the pros and cons of TDD and other Agi
 \begin{inparaenum}[(i)]
 	\item TDD advocates that one should always start development by writing a test first.
 But how do you know how to express what you want to test?
-\del{In practice, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.}
-\tg{Sometimes you know upfront how to create the setup and what the desired outcome is. But oftentimes you do not know upfront what the right assertion should be. In this situation you have to ``guess first'' to write the assertion. And even when you do know the assertion upfront, you have to ``guess first'' to imagine an API to express the interactions needed to exercise and test functionality you want to implement.}
+Sometimes you know up front how to create the setup and what the desired outcome should be.
+But quite often you do not know what the right assertion should be, so you have to ``guess first'' to write the assertion.
+Even when you do know the assertion up front, you still have to ``guess first'' to imagine an API to exercise the object and express the assertion.
 Of course, this is how tests ``drive'' development, but could there be an easier way to get to the test code that you need to write?
 	\item TDD then recommends that you write just enough code to make the test pass.
 But how do you know where to start coding?
 Again you have to ``guess first'' to figure out where to begin coding.
 	\item Once you have a green test, what can you do with it except read the code?
-A red test is useful, as long as it brings you to a debugger that lets you explore why the test has failed, but a green test is uninteresting \del{and useless}.
+A red test is useful, as long as it brings you to a debugger that lets you explore why the test has failed, but a green test is uninteresting.
 How could we make it useful?
 \end{inparaenum}
 
@@ -200,7 +201,6 @@ We can see this illustrated in \autoref{fig:exampleCreationA} where we start (le
   \label{fig:exampleCreationA}
 \end{figure}
 
-
 With the help of \emph{fixit dialogues} (not shown) we create the new class with a \st{money} slot (instance variable) and setter method.
 We can then inspect the new, raw \st{ConcretePrice} (middle pane), showing that its \st{money} slot is properly initialized.
 We can also inspect the slot's value (rightmost pane).
@@ -220,8 +220,6 @@ ConcretePrice new money: self; yourself.
 Note that \st{self} is bound to the live object we are inspecting.
 Evaluating this snippet and inspecting the result (right pane) gives us the \st{ConcretePrice} object that we expect.
 
-
-
 Now that we have prototyped the factory code, we can extract it as an extension method of the \st{Money} class called \st{asPrice} using an \emph{Extract method} refactoring.
 We see the refactored code (\autoref{fig:exampleCreationC}, left pane) as a ``code bubble''~\cite{Brag10a} by expanding \st{asPrice}.
 We also see that the refactored snippet still yields the result we want (right pane).
@@ -231,7 +229,6 @@ We also see that the refactored snippet still yields the result we want (right p
 	\caption{Extracting a factory method.}
   \label{fig:exampleCreationC}
 \end{figure}
-
 
 Now we can go back to our original snippet (\autoref{fig:exampleCreationD}, left pane) and rewrite it as:
 \begin{code}
@@ -244,13 +241,11 @@ Now we can go back to our original snippet (\autoref{fig:exampleCreationD}, left
   \label{fig:exampleCreationD}
 \end{figure}
 
-
 Now we have a nice snippet that creates an example that interests us.
 In \autoref{fig:exampleExtractionA} we apply an \emph{Extract example} refactoring to create a new \st{PriceExamples} class with a \st{hundredEuros} example  method.
 It is simply a method with a \st{<gtExample>} annotation (analogous to Java method annotations) that flags it as an example method, and which returns the object of interest (\autoref{fig:exampleExtractionB}, left pane with code bubble).
 Our example method still does not test anything, so let's prototype that too.
 We would expect our \st{hundredEuros} example to be equal to another instance that is created in the same way.
-
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd5-ExtractingExample}
@@ -258,13 +253,11 @@ We would expect our \st{hundredEuros} example to be equal to another instance th
   \label{fig:exampleExtractionA}
 \end{figure}
 
-
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{edd6-PriceExample}
 	\caption{The extracted example method.}
   \label{fig:exampleExtractionB}
 \end{figure}
-
 
 Within the context of the live example (\autoref{fig:exampleExtractionC}, left pane) we prototype the assertion that this example object (\ie \st{self}) is equal to another object created the same way.
 Unfortunately this fails (right pane) because our new \st{ConcretePrice} object has not implemented equality, so equality defaults to object identity.
@@ -282,7 +275,6 @@ If we evaluate this example method, it is not only green (left), but also return
 	\caption{Adding the assertion to the example method.}
   \label{fig:exampleExtractionD}
 \end{figure}
-
 
 % ============================================================
 \section{Moldable Examples}\label{sec:moldable}
@@ -345,7 +337,7 @@ In this case, the \emph{Overview} explains how the price has been calculated as 
 
 %\todo{Add something about creating narratives -- the custom views allow you to create both fixed narratives as notebook pages, and dynamic narratives by navigating to new views}
 
-\ac{Feels like we should show also a page describing prices}
+%\ac{Feels like we should show also a page describing prices}
 
 Perhaps the most compelling use of examples is within live documentation.
 GT includes support for knowledge bases consisting of linked notebook pages that are composed of various kinds of snippets: formatted test, images, code in various programming languages, and live examples.
@@ -355,29 +347,15 @@ This simple feature enables the creation of various kinds of live documentation,
 
 Let's see a few examples from the GT book, the knowledge base that comes bundled with the GT download.
 
-\del{In \autoref{fig:Memory} we see an extract of tutorial pages explaining how to build a graphical user interface using examples of a ``Memory'' game.\footnote{\url{https://en.wikipedia.org/wiki/Concentration_(card_game)}} The page contains a live, embedded example of a partially played Memory game with two cards turned over.}
-
-\tg{In \autoref{fig:LudoBook} we see an extract of a page describing the Ludo game.
-The page section describes the rules of the game for new a live, embedded example of the initial move of a player. The picture is created by a view on a move object produced by the \st{moveInitial} example method from the \st{GtLudoRecordingGameExamples} class.}
+In \autoref{fig:LudoBook} we see an extract of a page describing the Ludo game.
+This section of the page describes the rules of the game for new a live, embedded example of the initial move of a player.
+What we see is a custom view of a move object produced by the \st{moveInitial} example method of the \st{GtLudoRecordingGameExamples} class.
 
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book1-ludo-move}
   \caption{A ``Ludo'' documentation.}
   \label{fig:LudoBook}
 \end{figure}
-
-% ON: Skip the SPL example to save space.
-
-% \autoref{fig:SPL} explains how to implement a simple programming language using the PetitParser framework that comes bundled with GT.
-% We see an embedded example of a live interpreter of the SPL language.
-% At the bottom of the example snippet we can also see how the snippet was specified, by naming the example class and method (\st{SPLCaseStudyExamples >> #print3plus4}), specifying that we do not want to see the code of the example (\st{noCode=true}), and finally which custom view of the example we would like to see instead (\st{previewShow=#gtStateFor:}).
-
-% \begin{figure}[h]
-% \includegraphics[width=\columnwidth]{book2-SPL}
-% \caption{Implementing a simple programming language.}
-% \label{fig:SPL}
-% \end{figure}
-% \st{SPLCaseStudyExamples >> #print3plus4 | noCode=true | previewShow=#gtStateFor:}
 
 Examples can also be used effectively to explain algorithms.
 In \autoref{fig:Treemap} we see a notebook page that explains how a squarified TreeMap layout algorithm works with the help of live examples.
@@ -456,11 +434,9 @@ By embedding examples in live documentation, they make software systems explaina
 	\item 
 \end{inparaenum}
 
-
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{xxx}
   \caption{xxx.}
   \label{fig:xxx}
 \end{figure}
-
 
