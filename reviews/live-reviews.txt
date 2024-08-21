@@ -1,0 +1,115 @@
+Dear oscar.nierstrasz@acm.org,
+
+The Tenth Workshop on Live Programming (LIVE 2024) program committee is delighted to inform you that your submission "Example-driven development: bridging tests and documentation" has been accepted to appear at the workshop. Congratulations!
+
+Your three reviews are appended below. Reviewers have put a great deal of thought into offering constructive feedback. Please use their comments to improve your presentation before the workshop. Any feedback about challenges understanding your work and relating it to prior art may be especially valuable to pay attention to. If you would like additional feedback on how best to prepare your final submission, please let us know and we'll try to connect you with appropriate support.
+
+This year we received a large number of submissions and accepted 16 papers. Presentations will all be between ten and twenty minutes and we will let you know the length of your talk soon.
+
+The workshop will occur on Oct. 21 (Mon), in-person in Pasadena, CA (near Los Angeles).
+
+Please note that at least one author of the submission must register for the SPLASH conference and present at the workshop. If none of the authors are able to attend in person, please let us know as soon as possible and we can discuss potential accommodations. We want to emphasize that meeting people and discussing your work in person is generally the most valuable part of workshop participation and encourage everyone to attend if they can.
+
+As is customary with academic conferences, all attendees including speakers will need to cover their own registration fee, hotel, and travel. A single day registration for the workshop ranges between $180 and $285 USD. Full registration details, including attendance of the host OOPLSA and Onward! conferences can be found here: https://2024.splashcon.org/attending/Registration
+
+We encourage you to register early to ensure the best hotel and registration rates.
+
+Congratulations again; we look forward to seeing you at the workshop!
+
+Best,
+LIVE 2024 Co-chairs
+
+Peter van Hardenberg (Ink & Switch)
+Joshua Horowitz (University of Washington)
+Geoffrey Litt (Ink & Switch)
+
+---
+Review #87A
+===========================================================================
+
+Overall merit
+-------------
+4. Accept
+
+Reviewer expertise
+------------------
+2. Some familiarity
+
+Paper summary
+-------------
+Example-driven development is a variant of test-driven development that focuses on saving and visualizing useful examples of objects in the system, to support prototyping and serve as documentation.
+
+Comments for authors
+--------------------
+I really enjoyed reading this paper and seeing the variety of examples presented. Working with concrete example data is a core principle of live programming and it was illustrated nicely in this work. I particularly appreciated Section 4, which I think nicely illustrated a vision for how real example data can help when explaining a system. I think this work will make for a great presentation at the workshop.
+
+I think the work could be improved by pinning down more precisely what the specific contributions of this work are, and exactly what problem it's solving. From my read, the two contributions are 1) storing live examples for documentation in the course of prototyping, 2) providing rich graphical views of system objects. (But perhaps #2 is just considered prior work on Glamorous Toolkit?)
+
+I would have liked to see some comparison between this programming workflow and a REPL-driven programming workflow, which feel quite similar in that they both support open-ended exploration and prototyping with live objects. Is the main difference that this system stores examples for later, and provides custom dev tools for inspecting and editing objects?
+
+A couple related ideas that you might find interesting to review and possibly cite:
+
+- Example Centric Programming, Edwards OOPSLA 2004 notes the relationship between examples and tests: https://www.subtext-lang.org/OOPSLA04.pdf
+- The Clojure [REBL data browser](https://docs.datomic.com/other-tools/REBL.html) has some related ideas around visualizing data and showing examples, described in [this video](https://www.youtube.com/watch?v=Qx0-pViyIDU)
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+Review #87B
+===========================================================================
+
+Overall merit
+-------------
+2. Weak reject
+
+Reviewer expertise
+------------------
+3. Knowledgeable
+
+Paper summary
+-------------
+This paper presents example-driven development (EDD), a paradigm where programmers leverage examples and live inspection to prototype and create new APIs and potentially reuse the examples for testing the new APIs. The paper shows a few scenarios (figures) demonstrating EDD in the Glamourous Toolkit environment.
+
+Comments for authors
+--------------------
+This paper explains the difference between TDD and EDD well. The sequence of figures also provides a nice walkthrough of the example usage of EDD.
+
+
+However, I'm afraid that the idea of EDD is not novel. The paper misses one closely related work from OOPSLA 2024 (https://doi.org/10.1145/1052883.1052894) that proposed example-centric programming (and debugging). How does EDD differ from example-centric programming? Maybe they are different in some ways that I missed. The paper should include a thorough review of this work and discuss how EDD relates to example-centric programming.
+
+I am also confused about whether the demonstrated figures showcase a new system built on top of the Glamourous Toolkit, or usage of this paradigm in an established system. This might be due to my limited knowledge about the Glamorous Toolkit (GT) and the Pharo ecosystem. I think the reader could benefit from a bit more background information about GT and moldable development environments.
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+Review #87C
+===========================================================================
+* Reviewer: Alessandro Warth <alexwarth@gmail.com>
+
+Overall merit
+-------------
+2. Weak reject
+
+Reviewer expertise
+------------------
+2. Some familiarity
+
+Paper summary
+-------------
+The paper introduces (?) Example-Driven Programming: "a new take on TDD in which examples drive the development process". Through several examples in the Glamorous Toolkit, the authors explore the ways in which EDD enable a better live programming experience and vice-versa.
+
+Comments for authors
+--------------------
+What exactly are the contributions of this work? This is something that needs to be made very clear. As you note in Section 1 (Background), the notion of "example" that you are using (a test that returns its fixture / acts as a factory for an example) is borrowed from Gälli's work. It appears that "Example-Driven Development" is also not new, see http://xunitpatterns.com/example-driven%20development.html. So is the main contribution the way in which EDD enables better live programming (and vice-versa) in the Glamorous Toolkit?
+
+You explore EDD in the context of the Glamorous Toolkit. This work would be more widely applicable (thus more valuable) if you could somehow disentangle your contributions from GT. To that end, consider adding a section that outlines the set language and programming environment features that are needed in order to take full advantage of EDD and enable the flavor of live programming you talk about in the paper.
+
+I didn't find the price / money example compelling — it's perhaps too simple to really flex the muscles of your system, and given my limited understanding of your work (based only on what I read in the paper), the experience of programming it doesn't appear to be substantially nicer or more "live" than it would have been in (say) Smalltalk. To be clear, I'm not saying that I think there's nothing new or better here compared to ST. Rather, I am suggesting that you pick a more compelling example that really highlights what your system has to offer compared to Smalltalk.
+
+A similar comment could be made about explainability. Making software more explainable is a big deal, but the very high-level way in which you presented the examples in Section 4 failed to convince me. Not because your examples weren't interesting, but because you didn't go into enough detail for me to be able to tell whether or not you did a good job of making the code explainable. One way to address this problem might be to spend most of the paper going deep into a single, really compelling example (this could be your running example throughout the paper), instead of going for quantity.
+
+The "tiny analysis tools" (or views?) on the examples that are accessible via tabs in your inspector-like UI are a key part of the EDD experience. Presumably you could use EDD to program them, too. Showing what that experience is like would help paint a more complete picture of what it's like to live inside your system.
+
+In summary, I suspect there are some really good and interesting ideas here, but the paper doesn't doesn't do a great job of showing them off, or even make it clear what your contributions are.

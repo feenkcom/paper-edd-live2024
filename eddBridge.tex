@@ -1,17 +1,23 @@
+% ALTERNATIVE TEMPLATE for preprints
+% https://github.com/kourgeorge/arxiv-style
+% ============================================================
 % Modeled after sample-sigplan.tex
-\documentclass[sigplan,anonymous,review,10pt]{acmart}
-%\documentclass[sigplan,10pt]{acmart}
+% For review:
+%\documentclass[sigplan,anonymous,review,10pt]{acmart}
+% For ArXiv:
+%\documentclass[manuscript,12pt]{acmart}
+\documentclass[sigplan,10pt]{acmart}
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
   \providecommand\BibTeX{{%
     Bib\TeX}}}
-\setcopyright{acmlicensed}
+%\setcopyright{acmlicensed}
 \copyrightyear{2024}
-\acmYear{2024}
-\acmDOI{XXXXXXX.XXXXXXX}
+%\acmYear{2024}
+%\acmDOI{XXXXXXX.XXXXXXX}
 %% These commands are for a PROCEEDINGS abstract or paper.
 \acmConference[LIVE 2024]{LIVE 2024}{Oct.\ 20-25, 2024}{Pasadena, CA}
-\acmISBN{978-1-4503-XXXX-X/18/06}
+%\acmISBN{978-1-4503-XXXX-X/18/06}
 % ============================================================
 \input{macros}
 \input{st80.tex}
@@ -94,15 +100,14 @@ We show
 \end{inparaenum}
 \end{abstract}
 
-%\keywords{TODO.}
+\keywords{\todo{}}
 
-%\received{20 February 2007}
-%\received[revised]{12 March 2009}
-%\received[accepted]{5 June 2009}
+% NB: Max 6 pages for the workshop submission
 
 \maketitle
 
-% NB: Max 6 pages
+\todo{Change latex style to an arxiv preprint format to get rid of the ACM copyright garbage?}
+
 
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
@@ -143,8 +148,17 @@ In the remainder of this paper, we will show how examples
 	\item offer a means to augment documentation with live, interactive examples, as a step towards making software systems explainable.
 \end{inparaenum}
 
+\todo{Make clearer that these points are the contributions}
+
+\rA{I think the work could be improved by pinning down more precisely what the specific contributions of this work are, and exactly what problem it's solving. From my read, the two contributions are 1) storing live examples for documentation in the course of prototyping, 2) providing rich graphical views of system objects. (But perhaps \#2 is just considered prior work on Glamorous Toolkit?)}
+
+\rC{What exactly are the contributions of this work? This is something that needs to be made very clear. As you note in Section 1 (Background), the notion of "example" that you are using (a test that returns its fixture / acts as a factory for an example) is borrowed from Gälli's work. It appears that "Example-Driven Development" is also not new, see http://xunitpatterns.com/example-driven%20development.html.
+So is the main contribution the way in which EDD enables better live programming (and vice-versa) in the Glamorous Toolkit?}
+
 % ============================================================
 \section{EDD: TDD + Examples}\label{sec:edd}
+
+\rB{I am also confused about whether the demonstrated figures showcase a new system built on top of the Glamourous Toolkit, or usage of this paradigm in an established system. This might be due to my limited knowledge about the Glamorous Toolkit (GT) and the Pharo ecosystem. I think the reader could benefit from a bit more background information about GT and moldable development environments.}
 
 A key motivation for integrating unit tests into mainstream software development was to enable continuous refactoring of evolving software systems \cite{Beck00a}.
 % Beck00a, Extreme Programming Explained: Embrace Change
@@ -178,6 +192,10 @@ and
 \end{inparaenum}
 
 Let's see how this can work with a small, running example in Glamorous Toolkit\footnote{\url{https://gtoolkit.com}} (GT), an open-source moldable development environment implemented on top of the Pharo\footnote{\url{https://pharo.org}} Smalltalk  platform.
+
+\rC{I didn't find the price / money example compelling — it's perhaps too simple to really flex the muscles of your system, and given my limited understanding of your work (based only on what I read in the paper), the experience of programming it doesn't appear to be substantially nicer or more "live" than it would have been in (say) Smalltalk. To be clear, I'm not saying that I think there's nothing new or better here compared to ST. Rather, I am suggesting that you pick a more compelling example that really highlights what your system has to offer compared to Smalltalk.}
+
+\todo{Should we change the running example, or simply expand section 4 which has several other examples?}
 
 Suppose we have an existing library of classes implementing amounts of \st{Money} in various currencies, such as \st{100 euros} or \st{10 usd}.
 We would now like to implement \emph{prices} for goods, where a \st{Price} may be a concrete, fixed price, or a \emph{discounted} price, where the discount may be a fixed value or a percentage.
@@ -335,6 +353,10 @@ In this case, the \emph{Overview} explains how the price has been calculated as 
 % ============================================================
 \section{Explainable Systems using Examples}\label{sec:explainable}
 
+\rC{A similar comment (as about the price examples not being compelling) could be made about explainability. Making software more explainable is a big deal, but the very high-level way in which you presented the examples in Section 4 failed to convince me. Not because your examples weren't interesting, but because you didn't go into enough detail for me to be able to tell whether or not you did a good job of making the code explainable. One way to address this problem might be to spend most of the paper going deep into a single, really compelling example (this could be your running example throughout the paper), instead of going for quantity.
+The "tiny analysis tools" (or views?) on the examples that are accessible via tabs in your inspector-like UI are a key part of the EDD experience. Presumably you could use EDD to program them, too. Showing what that experience is like would help paint a more complete picture of what it's like to live inside your system.
+In summary, I suspect there are some really good and interesting ideas here, but the paper doesn't doesn't do a great job of showing them off, or even make it clear what your contributions are.}
+
 %\todo{Add something about creating narratives -- the custom views allow you to create both fixed narratives as notebook pages, and dynamic narratives by navigating to new views}
 
 %\ac{Feels like we should show also a page describing prices}
@@ -387,8 +409,18 @@ All of these illustrations show not only how example methods can be used product
 %Two pages have 22 examples.
 %}
 
+\rC{You explore EDD in the context of the Glamorous Toolkit. This work would be more widely applicable (thus more valuable) if you could somehow disentangle your contributions from GT. To that end, consider adding a section that outlines the set language and programming environment features that are needed in order to take full advantage of EDD and enable the flavor of live programming you talk about in the paper.}
+
 % ============================================================
 \section{Related work}\label{sec:related}
+\rA{I would have liked to see some comparison between this programming workflow and a REPL-driven programming workflow, which feel quite similar in that they both support open-ended exploration and prototyping with live objects. Is the main difference that this system stores examples for later, and provides custom dev tools for inspecting and editing objects?}
+
+\rA{A couple related ideas that you might find interesting to review and possibly cite:\\
+- Example Centric Programming, Edwards OOPSLA 2004 notes the relationship between examples and tests: https://www.subtext-lang.org/OOPSLA04.pdf\\
+- The Clojure [REBL data browser](https://docs.datomic.com/other-tools/REBL.html) has some related ideas around visualizing data and showing examples, described in [this video](https://www.youtube.com/watch?v=Qx0-pViyIDU)}
+
+\rB{The paper misses one closely related work from OOPSLA 2024 (https://doi.org/10.1145/1052883.1052894) that proposed example-centric programming (and debugging). How does EDD differ from example-centric programming? Maybe they are different in some ways that I missed. The paper should include a thorough review of this work and discuss how EDD relates to example-centric programming.}
+
 
 Bush was the first to dream of a computerized ``memex'' of stored knowledge~\cite{Bush45a}, through which a user could trace an associative ``trail'' of interconnected text and multimedia resources.
 The memex vision inspired Engelbart's NLS~\cite{Enge68a}, the first system to demonstrate human interaction with a computer mouse, windows, and hypertext features.
