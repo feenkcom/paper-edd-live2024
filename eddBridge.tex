@@ -4,9 +4,30 @@
 % Modeled after sample-sigplan.tex
 % For review:
 %\documentclass[sigplan,anonymous,review,10pt]{acmart}
-% For ArXiv:
-%\documentclass[manuscript,12pt]{acmart}
-\documentclass[sigplan,10pt]{acmart}
+% \documentclass[sigplan,10pt]{acmart}
+%
+% PREPRINT version -- see https://www.micahsmith.com/blog/2021/02/sharing-a-preprint-using-acmart/
+\documentclass[acmsmall,screen,authorversion,nonacm]{acmart} % PREPRINT
+%
+% ============================================================
+\input{macros}
+\input{st80.tex}
+\usepackage{subfigure}
+% ============================================================
+\newboolean{preprint}
+\setboolean{preprint}{true}
+%\setboolean{preprint}{false}
+\ifthenelse{\boolean{preprint}}{
+% FOR PREPRINT
+\usepackage{fancyhdr}
+\AtBeginDocument{%
+    \addtolength{\footskip}{2.0\baselineskip}%
+    \fancyfoot[L]{\textit{\textbf{Preprint version.}}}%
+}
+}{
+% FOR CAMERA-READY
+}
+% ============================================================
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
   \providecommand\BibTeX{{%
@@ -18,10 +39,6 @@
 %% These commands are for a PROCEEDINGS abstract or paper.
 \acmConference[LIVE 2024]{LIVE 2024}{Oct.\ 20-25, 2024}{Pasadena, CA}
 %\acmISBN{978-1-4503-XXXX-X/18/06}
-% ============================================================
-\input{macros}
-\input{st80.tex}
-\usepackage{subfigure}
 % ============================================================
 % Macros for this paper
 \newcommand*{\smallimg}[1]{%
