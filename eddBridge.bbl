@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{18}
+\begin{thebibliography}{17}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -122,18 +122,6 @@
 \showDOI{\tempurl}
 
 
-\bibitem[Chi\c{s} et~al\mbox{.}(2024)]%
-        {Chis24a}
-\bibfield{author}{\bibinfo{person}{Andrei Chi\c{s}}, \bibinfo{person}{Oscar
-  Nierstrasz}, {and} \bibinfo{person}{Tudor G\^irba}.}
-  \bibinfo{year}{2024}\natexlab{}.
-\newblock \showarticletitle{Moldable Exceptions}. In
-  \bibinfo{booktitle}{\emph{Proceedings of Onward! 2024}}.
-\newblock
-\newblock
-\shownote{to appear}.
-
-
 \bibitem[Engelbart and English(1968)]%
         {Enge68a}
 \bibfield{author}{\bibinfo{person}{Douglas~C Engelbart} {and}
@@ -241,7 +229,6 @@
 \urldef\tempurl%
 \url{https://doi.org/10.1093/comjnl/27.2.97}
 \showDOI{\tempurl}
-\showeprint{https://academic.oup.com/comjnl/article-pdf/27/2/97/981657/270097.pdf}
 
 
 \bibitem[Kuhn et~al\mbox{.}(2008)]%

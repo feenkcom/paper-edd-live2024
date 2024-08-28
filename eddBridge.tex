@@ -22,7 +22,7 @@
 \usepackage{fancyhdr}
 \AtBeginDocument{%
     \addtolength{\footskip}{2.0\baselineskip}%
-    \fancyfoot[L]{\textit{\textbf{Preprint version.}}}%
+    \fancyfoot[L]{\textit{Preprint of paper presented at Live workshop, SPLASH 2024, Pasadena, USA, Oct 20-25, 2024.}}%
 }
 }{
 % FOR CAMERA-READY
@@ -175,6 +175,9 @@ The key contributions of this paper are highlighted in the following sections, w
 
 \todo{Introduce subsections for motivation, GT and EDD, and the Prices example}
 
+% ------------------------------------------------------------
+\subsection{Motivation}
+
 A key motivation for integrating unit tests into mainstream software development was to enable continuous refactoring of evolving software systems \cite{Beck00a}.
 % Beck00a, Extreme Programming Explained: Embrace Change
 Test-Driven Development (TDD)~\cite{Beck03a} offers a way not only to ensure that tests are produced in tandem with the implementation of a software system, but importantly to exploit the potential for tests to serve as requirements that can drive the design and implementation process.
@@ -196,6 +199,9 @@ A red test is useful, as long as it brings you to a debugger that lets you explo
 How could we make it useful?
 \end{inparaenum}
 
+% ------------------------------------------------------------
+\subsection{EDD and GT}
+
 \emph{Example-Driven Development} (EDD) offers a new take on TDD in which examples drive the development process.
 It is similar to TDD, but can differ in important ways by exploiting opportunities raised by live programming.
 In short,
@@ -208,9 +214,14 @@ and
 
 \rB{I am also confused about whether the demonstrated figures showcase a new system built on top of the Glamourous Toolkit, or usage of this paradigm in an established system. This might be due to my limited knowledge about the Glamorous Toolkit (GT) and the Pharo ecosystem. I think the reader could benefit from a bit more background information about GT and moldable development environments.}
 
+\todo{Explain what GT is and how it leverages Examples and EDD}
+
 Let's see how this can work with a small, running example in Glamorous Toolkit\footnote{\url{https://gtoolkit.com}} (GT), an open-source moldable development environment implemented on top of the Pharo\footnote{\url{https://pharo.org}} Smalltalk  platform.
 
 \rC{I didn't find the price / money example compelling — it's perhaps too simple to really flex the muscles of your system, and given my limited understanding of your work (based only on what I read in the paper), the experience of programming it doesn't appear to be substantially nicer or more "live" than it would have been in (say) Smalltalk. To be clear, I'm not saying that I think there's nothing new or better here compared to ST. Rather, I am suggesting that you pick a more compelling example that really highlights what your system has to offer compared to Smalltalk.}
+
+% ------------------------------------------------------------
+\subsection{Running example}
 
 \todo{Explain that we illustrate EDD with a simple running example, and in section 4 show other examples.}
 
@@ -369,6 +380,8 @@ In this case, the \emph{Overview} explains how the price has been calculated as 
 
 % ============================================================
 \section{Explainable Systems using Examples}\label{sec:explainable}
+
+\todo{Add more examples and go into more detail.}
 
 \rC{A similar comment (as about the price examples not being compelling) could be made about explainability. Making software more explainable is a big deal, but the very high-level way in which you presented the examples in Section 4 failed to convince me. Not because your examples weren't interesting, but because you didn't go into enough detail for me to be able to tell whether or not you did a good job of making the code explainable. One way to address this problem might be to spend most of the paper going deep into a single, really compelling example (this could be your running example throughout the paper), instead of going for quantity.
 The "tiny analysis tools" (or views?) on the examples that are accessible via tabs in your inspector-like UI are a key part of the EDD experience. Presumably you could use EDD to program them, too. Showing what that experience is like would help paint a more complete picture of what it's like to live inside your system.
