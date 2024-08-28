@@ -117,14 +117,11 @@ We show
 \end{inparaenum}
 \end{abstract}
 
-\keywords{\todo{}}
+\keywords{Testing, TDD, examples, live programming, documentation.}
 
 % NB: Max 6 pages for the workshop submission
 
 \maketitle
-
-\todo{Change latex style to an arxiv preprint format to get rid of the ACM copyright garbage?}
-
 
 % ============================================================
 \section{Background: Examples = Tests + Factories}\label{sec:intro}
@@ -143,7 +140,7 @@ Examples can then be composed to form higher-level scenarios~\cite{Gael07a}.
 % Gael07a Composing Tests from Examples (JOT)
 
 In principle, any XUnit testing framework, for language X, can be extended to support examples.
-JExample\footnote{\url{https://scg.unibe.ch/research/jexample}} extends JUnit 4, allowing test methods not only to return examples, but also to accept as input one or more other examples from the same test example class.
+JExample\footnote{\href{https://web.archive.org/web/20230925063519/https://scg.unibe.ch/research/jexample}{https://scg.unibe.ch/research/jexample}} extends JUnit 4, allowing test methods not only to return examples, but also to accept as input one or more other examples from the same test example class.
 % https://scg.unibe.ch/research/jexample
 Interestingly, refactoring tests as examples establishes a partial order amongst test methods.
 The impact of this is that
@@ -158,24 +155,25 @@ By performing dynamic analysis on tests, one can largely automate the process of
 % Haen09a Defect Isolation As Responsibility of the Framework --- Automated API Migration from JUnit to JExample (MSc)
 
 Although examples are already interesting as a means to make explicit the otherwise implicit dependencies between tests to reduce duplicated code and improve defect localization, it turns out that examples can impact the software process in other, important ways.
-In the remainder of this paper, we will show how examples
+
+The key contributions of this paper are highlighted in the following sections, where we show how examples
 \begin{inparaenum}[(i)]
 	\item enrich the TDD process with live programming opportunities,
 	\item enable the \emph{moldable development} of tiny analysis tools, and
 	\item offer a means to augment documentation with live, interactive examples, as a step towards making software systems explainable.
 \end{inparaenum}
 
-\todo{Make clearer that these points are the contributions}
-
-\rA{I think the work could be improved by pinning down more precisely what the specific contributions of this work are, and exactly what problem it's solving. From my read, the two contributions are 1) storing live examples for documentation in the course of prototyping, 2) providing rich graphical views of system objects. (But perhaps \#2 is just considered prior work on Glamorous Toolkit?)}
-
-\rC{What exactly are the contributions of this work? This is something that needs to be made very clear. As you note in Section 1 (Background), the notion of "example" that you are using (a test that returns its fixture / acts as a factory for an example) is borrowed from Gälli's work. It appears that "Example-Driven Development" is also not new, see http://xunitpatterns.com/example-driven%20development.html.
-So is the main contribution the way in which EDD enables better live programming (and vice-versa) in the Glamorous Toolkit?}
+%\todo{Make clearer that these points are the contributions}
+%
+%\rA{I think the work could be improved by pinning down more precisely what the specific contributions of this work are, and exactly what problem it's solving. From my read, the two contributions are 1) storing live examples for documentation in the course of prototyping, 2) providing rich graphical views of system objects. (But perhaps \#2 is just considered prior work on Glamorous Toolkit?)}
+%
+%\rC{What exactly are the contributions of this work? This is something that needs to be made very clear. As you note in Section 1 (Background), the notion of "example" that you are using (a test that returns its fixture / acts as a factory for an example) is borrowed from Gälli's work. It appears that "Example-Driven Development" is also not new, see http://xunitpatterns.com/example-driven%20development.html.
+%So is the main contribution the way in which EDD enables better live programming (and vice-versa) in the Glamorous Toolkit?}
 
 % ============================================================
 \section{EDD: TDD + Examples}\label{sec:edd}
 
-\rB{I am also confused about whether the demonstrated figures showcase a new system built on top of the Glamourous Toolkit, or usage of this paradigm in an established system. This might be due to my limited knowledge about the Glamorous Toolkit (GT) and the Pharo ecosystem. I think the reader could benefit from a bit more background information about GT and moldable development environments.}
+\todo{Introduce subsections for motivation, GT and EDD, and the Prices example}
 
 A key motivation for integrating unit tests into mainstream software development was to enable continuous refactoring of evolving software systems \cite{Beck00a}.
 % Beck00a, Extreme Programming Explained: Embrace Change
@@ -208,11 +206,13 @@ and
 	\item a green test returns an example that we can inspect, interact with, and, as we shall see, embed into live documentation.
 \end{inparaenum}
 
+\rB{I am also confused about whether the demonstrated figures showcase a new system built on top of the Glamourous Toolkit, or usage of this paradigm in an established system. This might be due to my limited knowledge about the Glamorous Toolkit (GT) and the Pharo ecosystem. I think the reader could benefit from a bit more background information about GT and moldable development environments.}
+
 Let's see how this can work with a small, running example in Glamorous Toolkit\footnote{\url{https://gtoolkit.com}} (GT), an open-source moldable development environment implemented on top of the Pharo\footnote{\url{https://pharo.org}} Smalltalk  platform.
 
 \rC{I didn't find the price / money example compelling — it's perhaps too simple to really flex the muscles of your system, and given my limited understanding of your work (based only on what I read in the paper), the experience of programming it doesn't appear to be substantially nicer or more "live" than it would have been in (say) Smalltalk. To be clear, I'm not saying that I think there's nothing new or better here compared to ST. Rather, I am suggesting that you pick a more compelling example that really highlights what your system has to offer compared to Smalltalk.}
 
-\todo{Should we change the running example, or simply expand section 4 which has several other examples?}
+\todo{Explain that we illustrate EDD with a simple running example, and in section 4 show other examples.}
 
 Suppose we have an existing library of classes implementing amounts of \st{Money} in various currencies, such as \st{100 euros} or \st{10 usd}.
 We would now like to implement \emph{prices} for goods, where a \st{Price} may be a concrete, fixed price, or a \emph{discounted} price, where the discount may be a fixed value or a percentage.
@@ -323,7 +323,7 @@ It can be understood as a refinement of EDD in which objects (examples) are enha
 
 Moldable development is made possible with the help of \emph{moldable tools}~\cite{Chis17a}, such as code browsers, debuggers, and object inspectors, that can adapt themselves to the run-time context of an application to enable these analysis tools.
 % Chis17a Moldable Tools for Object-oriented Development
-For example, consider the screenshot of a Ludo\footnote{\url{https://en.m.wikipedia.org/wiki/Ludo}} game in figure \autoref{fig:ludoViews}.
+For example, consider the screenshot of a Ludo\footnote{\href{https://web.archive.org/web/20240530004250/https://en.m.wikipedia.org/wiki/Ludo}{https://en.m.wikipedia.org/wiki/Ludo}} game in figure \autoref{fig:ludoViews}.
 At the left we see in an object inspector a GUI \emph{Board} view of a running instance of the game that has terminated with player B winning.
 In the middle we see a \emph{Moves} view of the same instance, showing us all the past moves leading to the concluding state of the game.
 Finally, at the right we inspect a particular move, showing us how the game state was updated in move \#109.
