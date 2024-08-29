@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:56:32.575276+02:00"
+						"dateAndTimeString" : "2024-08-29T15:12:35.167781+02:00"
 					}
 				},
 				"editEmail" : {
@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:57:33.664428+02:00"
+						"dateAndTimeString" : "2024-08-29T15:12:35.448089+02:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtPage:Memory Game|db=2j9m7db2i4oz116bexd7wbdxo}}"
+				"string" : "{{gtPage:Executable domain-driven design: the Ludo game case study|db=2j9m7db2i4oz116bexd7wbdxo}}"
 			},
 			{
 				"__type" : "textSnippet",
@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-28T14:59:37.166379+02:00"
+						"dateAndTimeString" : "2024-06-28T14:59:52.976985+02:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtPage:Moldable Development patterns|db=2j9m7db2i4oz116bexd7wbdxo}} linked to "
+				"string" : "{{gtPage:Moldable Development patterns|db=2j9m7db2i4oz116bexd7wbdxo}} linked to {{gtPage:Custom Search|db=2j9m7db2i4oz116bexd7wbdxo}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-28T14:59:55.166886+02:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-28T14:59:55.166886+02:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "L5KXj1TYDQC9Ro8+DFHP0w=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
 			}
 		]
 	},
