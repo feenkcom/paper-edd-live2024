@@ -226,7 +226,7 @@ The process of \emph{molding} the software is that of augmenting software entiti
 Examples play an important part in the molding process in that
 \begin{inparaenum}[(i)]
 	\item GT is extensively covered by test cases, each of which returns an example,
-	\item molding is an interactive process that typically starts from a live example,
+	\item molding is an interactive process that typically starts from a live example, and
 	\item live examples are used extensively to document GT itself in the \emph{GT Book}, a knowledge base of notebook pages containing embedded examples.
 \end{inparaenum}
 
@@ -426,14 +426,14 @@ Let's see a few examples from the GT book, the knowledge base that comes bundled
 % ------------------------------------------------------------
 \subsection{Explaining a game}
 In \autoref{fig:LudoBook} we see an extract of a page describing the Ludo game (leftmost pane).
-This section of the page describes the rules of the game for a new, live, embedded example of the initial move of a player.
-What we see is a custom view of a move object produced by the \st{moveInitial} example method of the \st{GtLudoRecordingGameExamples} class.
+This section of the page describes the rules of the game using examples that illustrate various kinds of moves, in this case an ``impossible move.''
+What we see is a custom view of a move object produced by the \st{moveImpossible} example method of the \st{GtLudoRecordingGameExamples} class, illustrating a move that is not possible because there are not enough squares left in the game, thus sending the token back to its current square.
+We can dive into the live example (middle pane) and navigate to the replayed game (rightmost pane) to explore the moves leading to this position.
 \begin{figure}[h]
   \includegraphics[width=\columnwidth]{book1-ludo-move}
   \caption{Explaining the rules for Ludo moves.}
   \label{fig:LudoBook}
 \end{figure}
-We can dive into the live example (middle pane) and navigate to the replayed game (rightmost pane) to explore the moves leading to this position.
 
 % ------------------------------------------------------------
 \subsection{Explaining an interpreter implementation}
