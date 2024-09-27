@@ -11,7 +11,7 @@ Metacello new
 #BaselineOfPaperEddLive2024 asClass loadLepiter
 ```
 
-Published on [arXiv](https://arxiv.org/abs/2409.00514).
+Published on [arXiv (PDF)](https://arxiv.org/pdf/2409.00514).
 
 DOI: [10.48550/arXiv.2409.00514](https://doi.org/10.48550/arXiv.2409.00514)
 
