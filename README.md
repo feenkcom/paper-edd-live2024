@@ -19,7 +19,11 @@ DOI: [10.48550/arXiv.2409.00514](https://doi.org/10.48550/arXiv.2409.00514)
 
 Example-driven development: bridging tests and documentation
 
-# Abstract
+## Authors
+
+Oscar Nierstrasz, Andrei Chiş, Tudor Gîrba
+
+## Abstract
 
 Software systems should be *explainable*, that is, they should help us to answer questions while exploring, developing or using them. Textual documentation is a very weak form of explanation, since it is not causally connected to the code, so easily gets out of date. *Tests*, on the other hand, are causally connected to code, but they are also a weak form of explanation. Although some tests encode interesting scenarios that answer certain questions about how the system works, most tests tend to be uninteresting.
 
@@ -27,7 +31,7 @@ Software systems should be *explainable*, that is, they should help us to answer
 
 We show (i) how Example-Driven Development (EDD) enriches TDD with live programming, (ii) how examples can be *molded* with tiny tools to answer analysis questions, and (iii) how examples can be embedded within live documentation to make a system explainable.
 
-# BibTeX
+## BibTeX citation
 
 ```
 @misc{Nier24b,
