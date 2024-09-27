@@ -1,7 +1,13 @@
-# Installation
+# README
 
-This is the repo for a paper submission to [LIVE 2024](https://2024.splashcon.org/home/live-2024) on `Example-driven development: bridging tests and documentation`.
+This is the repo for a paper presented at [LIVE 2024](https://2024.splashcon.org/home/live-2024) on `Example-driven development: bridging tests and documentation`.
 The repo contains both the LaTeX sources and the related GT code Lepiter pages.
+
+Published on [arXiv (PDF)](https://arxiv.org/pdf/2409.00514).
+
+DOI: [10.48550/arXiv.2409.00514](https://doi.org/10.48550/arXiv.2409.00514)
+
+# GT Installation
 
 ```st
 Metacello new
@@ -10,10 +16,6 @@ Metacello new
 	load.
 #BaselineOfPaperEddLive2024 asClass loadLepiter
 ```
-
-Published on [arXiv (PDF)](https://arxiv.org/pdf/2409.00514).
-
-DOI: [10.48550/arXiv.2409.00514](https://doi.org/10.48550/arXiv.2409.00514)
 
 # Title
 
